@@ -2,13 +2,7 @@ from flask import render_template, url_for, flash, redirect
 from flask_login import login_user
 
 from . import app, bcrypt, db
-from .models import User, Group
-
-
-@app.route('/')
-def example():
-    return 'Hello world'
-
+from .models import User, Group, Album
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -48,13 +42,12 @@ def create_group():
     #         image=form.image.data
     #     )
     #
-    #     users = []
     #     for username in form.users.data:
     #         user = User.query.filter_by(username=username).first()
     #         if not user:
     #             flash('Користувача не знайдено', 'danger')
     #             return redirect(url_for('create_group'))
-    #         users.append(user)
+    #         user.group = group
     #
     #     group.users = users
     #     db.session.add(group)
@@ -63,4 +56,35 @@ def create_group():
     #     return redirect(url_for('home'))
     # return render_template('create_group.html', title='Create Group', form=form)
     ...
+
+@app.route('/groups/<int:group_id>/albums/create', methods=['GET', 'POST'])
+def create_album(group_id):
+    # form = None
+    # if form.validate_on_submit():
+    #     group = Group.query.filter_by(id=group_id).first()
+    #     if not group:
+    #         flash('Група не знайдена', 'danger')
+    #
+    #     album = Album(
+    #         label=form.label.data,
+    #         image=form.image.data,
+    #         group=group
+    #     )
+    #
+    #     db.session.add(album)
+    #     db.session.commit()
+    #     flash('Альбом успішно створено!', 'success')
+    #     return redirect(url_for('home'))
+    # return render_template('create_album.html', title='Create Album', form=form)
+    ...
+
+
+@app.route('/groups/<int:group_id>/albums/create', methods=['GET', 'POST'])
+@app.route()
+
+
+
+
+
+
 
