@@ -35,7 +35,6 @@ class Song(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(32), unique=False, nullable=False)
     media = db.Column(db.String(64), unique=False, nullable=False)
-    image = db.Column(db.String(64), unique=False, nullable=False, default='default.jpg')
     album_id = db.Column(db.Integer, db.ForeignKey('album.id'), nullable=False)
 
     def __repr__(self):

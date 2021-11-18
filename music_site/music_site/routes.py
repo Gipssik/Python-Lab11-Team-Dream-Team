@@ -3,7 +3,7 @@ from flask_login import login_user
 
 from . import app, bcrypt, db
 from .forms import RegistrationForm, LoginForm
-from .models import User, Group, Album
+from .models import User, Group, Album, Song
 
 
 @app.route('/home', methods=['GET'])
@@ -48,7 +48,7 @@ def create_group():
     #         image=form.image.data
     #     )
     #
-    #     for username in form.users.data:
+    #     for username in form.users.data.split(", "):
     #         user = User.query.filter_by(username=username).first()
     #         if not user:
     #             flash('Користувача не знайдено', 'danger')
@@ -61,6 +61,59 @@ def create_group():
     #     return redirect(url_for('home'))
     # return render_template('create_group.html', title='Create Group', form=form)
     ...
+
+
+@app.route('/groups/<int:group_id>/albums/create', methods=['GET', 'POST'])
+def create_album(group_id):
+    # form = None
+    # if form.validate_on_submit():
+    #     group = Group.query.filter_by(id=group_id).first()
+    #     if not group:
+    #         flash('Група не знайдена', 'danger')
+    #         return redirect(url_for('create_album'))
+    #
+    #     album = Album(
+    #         label=form.label.data,
+    #         image=form.image.data,
+    #         group=group
+    #     )
+    #
+    #     db.session.add(album)
+    #     db.session.commit()
+    #     flash('Альбом успішно створено!', 'success')
+    #     return redirect(url_for('home'))
+    # return render_template('create_album.html', title='Create Album', form=form)
+    ...
+
+
+@app.route('/groups/<int:group_id>/albums/<int:album_id>/edit', methods=['GET', 'POST'])
+def edit(group_id, album_id):
+    form = None
+    if form.validate_on_submit():
+        group = Group.query.filter_by(id=group_id).first()
+        if not group:
+            flash('Група не знайдена', 'danger')
+            return redirect(url_for('add_song'))
+
+        album = group.albums.filter_by(id=album_id).first()
+        if not album:
+            flash('Альбом не знайдено', 'danger')
+            return redirect(url_for('add_song'))
+
+        album.image = form.image.data
+        album.label = form.label.data
+
+        song = Song(
+            title=form.title.data,
+            album=album,
+            media=form.media.data
+        )
+
+        db.session.add(song)
+        db.session.commit()
+        flash(f'Пісня успішно додана до альбому {album.label}!', 'success')
+        return redirect(url_for('edit'))
+    return render_template('edit.html', title='', form=form)
 
 
 @app.route('/groups/<int:group_id>')
