@@ -23,6 +23,7 @@ class Role(db.Model):
     def __repr__(self):
         return f'Role("{self.title}")'
 
+
 class Song(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(32), unique=False, nullable=False)
@@ -33,16 +34,18 @@ class Song(db.Model):
     def __repr__(self):
         return f'Song("{self.title}")'
 
+
 class Album(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     label = db.Column(db.String(64), unique=False, nullable=False)
-    data_created = db.Column(db.DataTime, unique=False, nullable=False, default=datetime.utcnow)
+    data_created = db.Column(db.DateTime, unique=False, nullable=False, default=datetime.utcnow)
     image = db.Column(db.String(64), unique=False, nullable=False, default='default.jpg')
     songs = db.relationship('Song', backref='album', lazy=True)
     group_id = db.Column(db.Integer, db.ForeignKey('group.id'), nullable=False)
 
     def __repr__(self):
         return f'Album("{self.label}")'
+
 
 class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
