@@ -1,15 +1,23 @@
 from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField
+from wtforms.fields.simple import BooleanField, SubmitField
+from wtforms.validators import DataRequired, Email, EqualTo, Length
 
-# IMPORT REQUIRED FIELDS
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import Email, DataRequired, Length
+
+class RegistrationForm(FlaskForm):
+    username = StringField('Username',
+                           validators=[DataRequired(), Length(min=3, max=20)])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField(
+        'Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Sign Up')
 
 
-class RegisteringUser(FlaskForm):
-    name = StringField("Ім'я: ", validators=[DataRequired()])
-    email = StringField("Email: ", validators=[Email()])
-    password = PasswordField("Пароль: ", validators=[DataRequired(), Length(min=4, max=100)])
-    remember = BooleanField("Запам'ятати: ", default=False)
-    submit = SubmitField("Війти")
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired(), Length(min=3, max=20)])
+    password = PasswordField('Password', validators=[DataRequired()])
+    remember = BooleanField('Remember Me')
+    submit = SubmitField('Login')
 
 
