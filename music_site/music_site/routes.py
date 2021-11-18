@@ -3,7 +3,13 @@ from flask_login import login_user
 
 from . import app, bcrypt, db
 from .forms import RegistrationForm, LoginForm
-from .models import User, Group
+from .models import User, Group, Album
+
+
+@app.route('/home', methods=['GET'])
+def home():
+    musicians = Group.query.all()
+    return render_template('home.html', title='Головна', musicians=musicians)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -55,3 +61,10 @@ def create_group():
     #     return redirect(url_for('home'))
     # return render_template('create_group.html', title='Create Group', form=form)
     ...
+
+
+@app.route('/groups/<int:group_id>')
+def group_page(group_id):
+    group = Group.query.get(group_id)
+    albums = Album.query.filter_by(group=group).all()
+    return render_template('group_page.html', title=group.name, albums=albums)
