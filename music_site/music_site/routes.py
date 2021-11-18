@@ -66,6 +66,10 @@ def create_group():
 @app.route('/groups/<int:group_id>')
 def group_page(group_id):
     group = Group.query.get(group_id)
+    if not group:
+        flash('Група не знайдена', 'danger')
+        return redirect(url_for('home'))
+
     albums = Album.query.filter_by(group=group).all()
     return render_template('group_page.html', title=group.name, albums=albums)
 
