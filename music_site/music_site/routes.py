@@ -49,10 +49,10 @@ def create_group():
     #     )
     #
     #     users = []
-    #     for email in form.users.data:
-    #         user = User.query.filter_by(email=email).first()
+    #     for username in form.users.data:
+    #         user = User.query.filter_by(username=username).first()
     #         if not user:
-    #             flash('Користувача не знайдено', 'error')
+    #             flash('Користувача не знайдено', 'danger')
     #             return redirect(url_for('create_group'))
     #         users.append(user)
     #
