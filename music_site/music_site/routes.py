@@ -108,12 +108,3 @@ def edit(group_id, album_id):
         flash(f'Пісня успішно додана до альбому {album.label}!', 'success')
         return redirect(url_for('edit'))
     return render_template('edit.html', title='', form=form)
-
-
-
-
-
-
-
-
-
