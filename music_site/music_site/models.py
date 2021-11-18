@@ -9,7 +9,7 @@ class User(db.Model):
     password = db.Column(db.String(32), unique=False, nullable=False)
     image = db.Column(db.String(64), unique=False, nullable=False, default='default.jpg')
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=False)
-    group_id = db.Column(db.Integer, db.ForeignKey('group.id'), nullable=False)
+    group_id = db.Column(db.Integer, db.ForeignKey('group.id'), nullable=True)
 
     def __repr__(self):
         return f'User("{self.username}", "{self.email}")'
