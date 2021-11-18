@@ -74,7 +74,7 @@ def group_page(group_id):
 def create_album(group_id):
     # form = None
     # if form.validate_on_submit():
-    #     group = Group.query.filter_by(id=group_id).first()
+    #     group = Group.query.get(group_id)
     #     if not group:
     #         flash('Група не знайдена', 'danger')
     #         return redirect(url_for('create_album'))
@@ -93,20 +93,36 @@ def create_album(group_id):
     ...
 
 
+@app.route('/groups/<int:group_id>/albums/<int:album_id>', methods=['GET', 'POST'])
+def album_page(group_id, album_id):
+    group = Group.query.get(group_id)
+    if not group:
+        flash('Група не знайдена', 'danger')
+        return redirect(url_for('home'))
+
+    album = Album.query.filter_by(id=album_id, group=group)
+    if not album:
+        flash('Альбом не знайдено', 'danger')
+        return redirect(url_for('home'))
+
+    songs = Album.query.filter_by(album=album).all()
+    return render_template('album_page.html', title=album.name, songs=songs)
+
+
 @app.route('/groups/<int:group_id>/albums/<int:album_id>/edit', methods=['GET', 'POST'])
 def edit(group_id, album_id):
     # form = None
     # if form.validate_on_submit():
-    #     group = Group.query.filter_by(id=group_id).first()
+    #     group = Group.query.get(group_id)
     #     if not group:
     #         flash('Група не знайдена', 'danger')
-    #         return redirect(url_for('add_song'))
+    #         return redirect(url_for('home'))
     #
-    #     album = group.albums.filter_by(id=album_id).first()
+    #     album = Album.query.filter_by(id=album_id, group=group)
     #     if not album:
     #         flash('Альбом не знайдено', 'danger')
-    #         return redirect(url_for('add_song'))
-    #
+    #         return redirect(url_for('home'))
+
     #     album.image = form.image.data
     #     album.label = form.label.data
     #
