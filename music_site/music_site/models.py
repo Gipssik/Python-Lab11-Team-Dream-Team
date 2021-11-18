@@ -50,6 +50,7 @@ class Album(db.Model):
 class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), unique=False, nullable=False)
+    content = db.Column(db.String(1000), unique=False, nullable=False)
     data_created = db.Column(db.DataTime, unique=False, nullable=False, default=datetime.utcnow)
     image = db.Column(db.String(64), unique=False, nullable=False, default='default.jpg')
     users = db.relationship('User', backref='group', lazy=True)
