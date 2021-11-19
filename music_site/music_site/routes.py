@@ -104,7 +104,7 @@ def album_page(group_id, album_id):
         flash('Група не знайдена', 'danger')
         return redirect(url_for('home'))
 
-    album = Album.query.filter_by(id=album_id, group=group)
+    album = Album.query.filter_by(id=album_id, group=group).first()
     if not album:
         flash('Альбом не знайдено', 'danger')
         return redirect(url_for('home'))
@@ -122,7 +122,7 @@ def edit(group_id, album_id):
     #         flash('Група не знайдена', 'danger')
     #         return redirect(url_for('home'))
     #
-    #     album = Album.query.filter_by(id=album_id, group=group)
+    #     album = Album.query.filter_by(id=album_id, group=group).first()
     #     if not album:
     #         flash('Альбом не знайдено', 'danger')
     #         return redirect(url_for('home'))
