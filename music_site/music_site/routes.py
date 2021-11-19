@@ -99,12 +99,7 @@ def create_album(group_id):
 
 @app.route('/groups/<int:group_id>/albums/<int:album_id>', methods=['GET', 'POST'])
 def album_page(group_id, album_id):
-    group = Group.query.get(group_id)
-    if not group:
-        flash('Група не знайдена', 'danger')
-        return redirect(url_for('home'))
-
-    album = Album.query.filter_by(id=album_id, group=group).first()
+    album = Album.query.filter_by(id=album_id, group_id=group_id).first()
     if not album:
         flash('Альбом не знайдено', 'danger')
         return redirect(url_for('home'))
@@ -117,12 +112,7 @@ def album_page(group_id, album_id):
 def edit(group_id, album_id):
     # form = None
     # if form.validate_on_submit():
-    #     group = Group.query.get(group_id)
-    #     if not group:
-    #         flash('Група не знайдена', 'danger')
-    #         return redirect(url_for('home'))
-    #
-    #     album = Album.query.filter_by(id=album_id, group=group).first()
+    #     album = Album.query.filter_by(id=album_id, group_id=group_id).first()
     #     if not album:
     #         flash('Альбом не знайдено', 'danger')
     #         return redirect(url_for('home'))
