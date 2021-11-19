@@ -56,7 +56,7 @@ class Album(db.Model):
 class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), unique=False, nullable=False)
-    content = db.Column(db.Text, unique=False, nullable=False)
+    content = db.Column(db.Text, unique=False, nullable=True)
     data_created = db.Column(db.DateTime, unique=False, nullable=False, default=datetime.utcnow)
     users = db.relationship('User', backref='group', lazy=True)
     albums = db.relationship('Album', backref='group', lazy=True)

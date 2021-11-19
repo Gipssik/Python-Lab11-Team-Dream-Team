@@ -1,11 +1,11 @@
 from flask import render_template, url_for, flash, redirect
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required
 
 from . import app, bcrypt, db
-from .forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm, GroupForm, AlbumForm
 from .models import User, Group, Album, Song
 
-
+@app.route('/')
 @app.route('/home', methods=['GET'])
 def home():
     musicians = Group.query.all()
@@ -36,38 +36,41 @@ def login():
         flash('Невдача. Перевірте логін і пароль.', 'danger')
     return render_template('login.html', title='Логін', form=form)
 
+
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('home'))
 
+
 @app.route('/groups/create', methods=['GET', 'POST'])
+# @login_required
 def create_group():
-    # form = None
-    # if form.validate_on_submit():
-    #     group = Group(
-    #         name=form.name.data,
-    #         content=form.content.data,
-    #         data_created=form.content_data.data,
-    #         image=form.image.data
-    #     )
-    #
-    #     for username in form.users.data.split(", "):
-    #         user = User.query.filter_by(username=username).first()
-    #         if not user:
-    #             flash('Користувача не знайдено', 'danger')
-    #             return redirect(url_for('create_group'))
-    #         user.group = group
-    #
-    #     db.session.add(group)
-    #     db.session.commit()
-    #     flash('Групу успішно створено!', 'success')
-    #     return redirect(url_for('home'))
-    # return render_template('create_group.html', title='Створення Групи', form=form)
-    ...
+    form = GroupForm()
+    if form.validate_on_submit():
+        group = Group(
+            name=form.name.data,
+            content=form.content.data,
+            image=form.img.data
+        )
+
+        for username in form.users.data.split(", "):
+            user = User.query.filter_by(username=username).first()
+            if not user:
+                flash('Користувача не знайдено', 'danger')
+                return redirect(url_for('create_group'))
+            user.group = group
+
+        db.session.add(group)
+        db.session.commit()
+        flash('Групу успішно створено!', 'success')
+        return redirect(url_for('home'))
+    return render_template('create_group.html', title='Створення Групи', form=form)
 
 
 @app.route('/groups/<int:group_id>')
+# @login_required
 def group_page(group_id):
     group = Group.query.get(group_id)
     if not group:
@@ -79,29 +82,30 @@ def group_page(group_id):
 
 
 @app.route('/groups/<int:group_id>/albums/create', methods=['GET', 'POST'])
+# @login_required
 def create_album(group_id):
-    # form = None
-    # if form.validate_on_submit():
-    #     group = Group.query.get(group_id)
-    #     if not group:
-    #         flash('Група не знайдена', 'danger')
-    #         return redirect(url_for('create_album'))
-    #
-    #     album = Album(
-    #         label=form.label.data,
-    #         image=form.image.data,
-    #         group=group
-    #     )
-    #
-    #     db.session.add(album)
-    #     db.session.commit()
-    #     flash('Альбом успішно створено!', 'success')
-    #     return redirect(url_for('home'))
-    # return render_template('create_album.html', title='Створення Альбому', form=form)
-    ...
+    form = AlbumForm()
+    if form.validate_on_submit():
+        group = Group.query.get(group_id)
+        if not group:
+            flash('Група не знайдена', 'danger')
+            return redirect(url_for('create_album'))
+
+        album = Album(
+            label=form.label.data,
+            image=form.img.data,
+            group=group
+        )
+
+        db.session.add(album)
+        db.session.commit()
+        flash('Альбом успішно створено!', 'success')
+        return redirect(url_for('home'))
+    return render_template('create_album.html', title='Створення Альбому', form=form)
 
 
 @app.route('/groups/<int:group_id>/albums/<int:album_id>', methods=['GET', 'POST'])
+# @login_required
 def album_page(group_id, album_id):
     album = Album.query.filter_by(id=album_id, group_id=group_id).first()
     if not album:
@@ -113,6 +117,7 @@ def album_page(group_id, album_id):
 
 
 @app.route('/groups/<int:group_id>/albums/<int:album_id>/edit', methods=['GET', 'POST'])
+# @login_required
 def edit(group_id, album_id):
     # form = None
     # if form.validate_on_submit():
