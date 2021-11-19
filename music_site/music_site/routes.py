@@ -1,5 +1,5 @@
 from flask import render_template, url_for, flash, redirect
-from flask_login import login_user
+from flask_login import login_user, logout_user
 
 from . import app, bcrypt, db
 from .forms import RegistrationForm, LoginForm
@@ -36,6 +36,10 @@ def login():
         flash('Невдача. Перевірте логін і пароль.', 'danger')
     return render_template('login.html', title='Логін', form=form)
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
 
 @app.route('/groups/create', methods=['GET', 'POST'])
 def create_group():
@@ -105,7 +109,7 @@ def album_page(group_id, album_id):
         return redirect(url_for('home'))
 
     songs = Album.query.filter_by(album=album).all()
-    return render_template('album_page.html', title=album.name, songs=songs)
+    return render_template('album_page.html', title=album.name, image=album.image, songs=songs)
 
 
 @app.route('/groups/<int:group_id>/albums/<int:album_id>/edit', methods=['GET', 'POST'])
