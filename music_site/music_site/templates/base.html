@@ -2,9 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    {% block title %}{% endblock %}
+
+    {% if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>Головна</title>
+    {% endif %}
+
+    <link href="../static/style.css" rel="stylesheet">
+    <link href="../static/reset.css" rel="stylesheet">
 </head>
 <body>
-    {% block header %}{% endblock %}
+    <div class="wrapper">
+        {% block header %}{% endblock %}
+        {% block main %}{% endblock %}
+        <footer class="footer">
+            <div class="footer__container _container">
+                <div class="footer__copy">
+                    <a href="https://www.instagram.com/bogdan_dubinchenko/" target="_blank" class="footer__img">
+                        <img src="../static/img/instagram.png" alt="Instagram">
+                    </a>
+                    <a href="https://www.instagram.com/bogdan_dubinchenko/" target="_blank" class="footer__user">Дубинченко Богдан</a>
+                </div>
+                <div class="footer__copy">
+                    <a href="https://www.instagram.com/roma.kormysh/" target="_blank" class="footer__img">
+                        <img src="../static/img/instagram.png" alt="Instagram">
+                    </a>
+                    <a href="https://www.instagram.com/roma.kormysh/" target="_blank" class="footer__user">Кормиш Роман</a>
+                </div>
+                <div class="footer__copy">
+                    <a href="https://www.instagram.com/thegipss/" target="_blank" class="footer__img">
+                        <img src="../static/img/instagram.png" alt="Instagram">
+                    </a>
+                    <a href="https://www.instagram.com/thegipss/" target="_blank" class="footer__user">Гісса Дмитро</a>
+                </div>
+                <div class="footer__copy">
+                    <a href="https://www.instagram.com/_elumion_/" target="_blank" class="footer__img">
+                        <img src="../static/img/instagram.png" alt="Instagram">
+                    </a>
+                    <a href="https://www.instagram.com/_elumion_/" target="_blank" class="footer__user">Довгалюк Владислав</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="../static/script.js"></script>
 </body>
 </html>

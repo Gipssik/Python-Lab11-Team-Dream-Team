@@ -1,98 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="../static/style.css" rel="stylesheet">
-</head>
-<body>
-    <div class="wrapper">
-        <header class="header">
-            <div class="header__container _container">
-                <div class="logo__menu">
-                    <a href="" class="header__logo">Muzik</a>
-                    <div class="header__menu menu">
-                        <ul class="menu__list">
-                            <li class="menu__item">
-                                <a href="" class="menu__link">Створення групи</a>
-                            </li>
-                            <li class="menu__item">
-                                <a href="" class="menu__link">Створення альбому</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="header__buttons">
-                    <button type="button" class="button__register button">Зареєструватися</button>
-                    <button type="button" class="button__sing__in button">Увійти</button>
-                </div>
+{% extends 'base.html' %}
+
+
+{% block header %}
+<header class="header">
+    <div class="header__container _container">
+        <div class="logo__menu">
+            <a href="" class="header__logo">Muzik</a>
+            <div class="header__menu menu">
+                <ul class="menu__list">
+                    <li class="menu__item">
+                        <a href="" class="menu__link">Створення групи</a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="" class="menu__link">Створення альбому</a>
+                    </li>
+                </ul>
             </div>
-        </header>
-
-        <main class="main">
-            <div class="main__container _container">
-                <div class="main__group group">
-                    <div class="group__img"></div>
-                    <div class="group__info info">
-                        <a href="" class="info__name">Name</a><br>
-
-                        <a href="" class="info__users">Склад групи</a><br>
-
-                        <a href="" class="info__context">Інфо Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, b.</a>
-                    </div>
-                </div>
-                <div class="main__group group">
-                    <div class="group__img"></div>
-                    <div class="group__info info">
-                        <a href="" class="info__name">Name</a><br>
-
-                        <a href="" class="info__users">Склад групи</a><br>
-
-                        <a href="" class="info__context">Інфо</a>
-                    </div>
-                </div>
-                <div class="main__group group">
-                    <div class="group__img"></div>
-                    <div class="group__info info">
-                        <a href="" class="info__name">Name</a><br>
-
-                        <a href="" class="info__users">Склад групи</a><br>
-
-                        <a href="" class="info__context">Інфо</a>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <footer class="footer">
-            <div class="footer__container _container">
-                <div class="footer__copy">
-                    <a href="https://www.instagram.com/bogdan_dubinchenko/" target="_blank" class="footer__img">
-                        <img src="../static/img/instagram.png" alt="Instagram">
-                    </a>
-                    <a href="https://www.instagram.com/bogdan_dubinchenko/" target="_blank" class="footer__user">Дубинченко Богдан</a>
-                </div>
-                <div class="footer__copy">
-                    <a href="https://www.instagram.com/roma.kormysh/" target="_blank" class="footer__img">
-                        <img src="../static/img/instagram.png" alt="Instagram">
-                    </a>
-                    <a href="https://www.instagram.com/roma.kormysh/" target="_blank" class="footer__user">Кормиш Роман</a>
-                </div>
-                <div class="footer__copy">
-                    <a href="https://www.instagram.com/thegipss/" target="_blank" class="footer__img">
-                        <img src="../static/img/instagram.png" alt="Instagram">
-                    </a>
-                    <a href="https://www.instagram.com/thegipss/" target="_blank" class="footer__user">Гісса Дмитро</a>
-                </div>
-                <div class="footer__copy">
-                    <a href="https://www.instagram.com/_elumion_/" target="_blank" class="footer__img">
-                        <img src="../static/img/instagram.png" alt="Instagram">
-                    </a>
-                    <a href="https://www.instagram.com/_elumion_/" target="_blank" class="footer__user">Довгалюк Владислав</a>
-                </div>
-            </div>
-        </footer>
+        </div>
+        <div class="header__buttons">
+            <button type="button" class="button__register button">Зареєструватися</button>
+            <button type="button" class="button__sing__in button">Увійти</button>
+        </div>
     </div>
-    <script src="../static/script.js"></script>
-</body>
-</html>
+</header>
+{% endblock %}
+
+{% block main %}
+<main class="main">
+    <div class="main__container _container">
+        {% for musician in musicians %}
+        <div class="main__group group">
+            <div class="group__img">
+                <img src="{{ musician.image }}">
+            </div>
+            <div class="group__info info">
+                <a href="" class="info__name">{{ musician.name }}</a><br>
+
+                <a href="" class="info__users">{{ musician.users|map(attribute="username")|join(', ') }}</a><br>
+
+                <a href="" class="info__context">{{ musician.content }}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}
