@@ -1,5 +1,5 @@
 from flask import render_template, url_for, flash, redirect
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 
 from . import app, bcrypt, db
 from .forms import RegistrationForm, LoginForm, GroupForm, AlbumForm, EditAlbumForm
@@ -42,6 +42,13 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+
+@app.route('/account')
+@login_required
+def account():
+    image = url_for('static', filename=f'img/{current_user.image}')
+    return render_template('account.html', title='Account', image=image)
 
 
 @app.route('/groups/create', methods=['GET', 'POST'])
