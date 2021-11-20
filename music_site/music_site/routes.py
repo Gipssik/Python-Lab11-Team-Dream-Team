@@ -1,9 +1,10 @@
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, request
 from flask_login import login_user, logout_user, login_required, current_user
 
 from . import app, bcrypt, db
 from .forms import RegistrationForm, LoginForm, GroupForm, AlbumForm, EditAlbumForm
 from .models import User, Group, Album, Song
+from .services import save_image
 
 @app.route('/')
 @app.route('/home', methods=['GET'])
@@ -44,23 +45,40 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route('/account')
+@app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
-    image = url_for('static', filename=f'img/{current_user.image}')
-    return render_template('account.html', title='Account', image=image)
-
+    # form = None
+    # if form.validate_on_submit():
+    #     if form.img.data:
+    #         current_user.image = save_image(form.img.data)
+    #     current_user.username = form.username.data
+    #     current_user.email = form.email.data
+    #
+    #     db.session.commit()
+    #     flash('Ваш аккаунт оновлено!', 'success')
+    #     return redirect(url_for('account'))
+    # elif request.method == 'GET':
+    #     form.username.data = current_user.username
+    #     form.email.data = current_user.email
+    #
+    # image = url_for('static', filename=f'img/{current_user.image}')
+    # return render_template('account.html', title='Account', image=image, form=form)
+    ...
 
 @app.route('/groups/create', methods=['GET', 'POST'])
 # @login_required
 def create_group():
     form = GroupForm()
     if form.validate_on_submit():
+
         group = Group(
             name=form.name.data,
             content=form.content.data,
-            image=form.img.data
         )
+
+        if form.img.data:
+            group.image = save_image(form.img.data)
 
         for username in form.users.data.split(", "):
             user = User.query.filter_by(username=username).first()
@@ -100,9 +118,10 @@ def create_album(group_id):
 
         album = Album(
             label=form.label.data,
-            image=form.img.data,
             group=group
         )
+        if form.img.data:
+            album.image = save_image(form.img.data)
 
         db.session.add(album)
         db.session.commit()
@@ -125,25 +144,30 @@ def album_page(group_id, album_id):
 
 @app.route('/groups/<int:group_id>/albums/<int:album_id>/edit', methods=['GET', 'POST'])
 # @login_required
-def edit(group_id, album_id):
+def edit_group(group_id, album_id):
     form = EditAlbumForm()
     if form.validate_on_submit():
         album = Album.query.filter_by(id=album_id, group_id=group_id).first()
+
         if not album:
             flash('Альбом не знайдено', 'danger')
-            return redirect(url_for('home'))
+            return redirect(url_for('edit_group'))
 
-        album.image = form.img.data
+        if form.img.data:
+            album.image = save_image(form.img.data)
+
         album.label = form.label.data
 
-        song = Song(
-            title=form.title.data,
-            album=album,
-            media=form.media.data
-        )
+        if form.title.data and form.media.date:
+            song = Song(
+                title=form.title.data,
+                album=album,
+                media=form.media.data
+            )
+            db.session.add(song)
 
-        db.session.add(song)
         db.session.commit()
-        flash(f'Пісня успішно додана до альбому {album.label}!', 'success')
-        return redirect(url_for('edit'))
+        flash(f'Альбом "{album.label}" оновлено!', 'success')
+
+        return redirect(url_for('edit_group'))
     return render_template('edit.html', title='Редагування', form=form)
