@@ -48,6 +48,7 @@ class GroupForm(FlaskForm):
 class AlbumForm(FlaskForm):
     label = StringField("Ім\'я альбому: ", validators=[DataRequired(), Length(min=1, max=30)])
     img = FileField("Обкладинка: ", validators=[DataRequired()])
+    submit = SubmitField("Добавити")
 
     def validate_album(self, label):
         label_album = Album.query.filter_by(lable=label.data).first()
@@ -60,6 +61,7 @@ class EditAlbumForm(FlaskForm):
     img = FileField("Обкладинка: ", validators=[DataRequired()])
     title = StringField("Ім\'я пісні: ", validators=[DataRequired(), Length(min=1, max=30)])
     media = FileField("Пісня: ", validators=[DataRequired()])
+    submit = SubmitField("Добавити")
 
     def validate_album(self, label):
         label_album = Album.query.filter_by(lable=label.data).first()
@@ -70,3 +72,10 @@ class EditAlbumForm(FlaskForm):
         media_album = Song.query.filter_by(media=media.data).first()
         if media_album:
             raise ValidationError('Таке ім\'я вже існує')
+
+
+class UpdateUserInfoForm(FlaskForm):
+    username = StringField("Ім\'я: ", validators=[DataRequired(), Length(min=3, max=20)])
+    email = StringField("Почта: ", validators=[DataRequired(), Email()])
+    musician = BooleanField("Я музикант: ")
+    submit = SubmitField("Змінити")

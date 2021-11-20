@@ -1,33 +1,10 @@
 {% extends 'base.html' %}
 
 
-{% block header %}
-<header class="header">
-    <div class="header__container _container">
-        <div class="logo__menu">
-            <a href="" class="header__logo">Muzik</a>
-            <div class="header__menu menu">
-                <ul class="menu__list">
-                    <li class="menu__item">
-                        <a href="" class="menu__link">Створення групи</a>
-                    </li>
-                    <li class="menu__item">
-                        <a href="" class="menu__link">Створення альбому</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="header__buttons">
-            <button type="button" class="button__register button">Зареєструватися</button>
-            <button type="button" class="button__sing__in button">Увійти</button>
-        </div>
-    </div>
-</header>
-{% endblock %}
-
 {% block main %}
 <main class="main">
     <div class="main__container _container">
+
         {% for musician in musicians %}
         <div class="main__group group">
             <div class="group__img">
@@ -42,6 +19,7 @@
             </div>
         </div>
         {% endfor %}
+
     </div>
 </main>
 {% endblock %}
