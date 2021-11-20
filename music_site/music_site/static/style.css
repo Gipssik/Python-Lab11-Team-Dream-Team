@@ -34,7 +34,7 @@ body{
     font-size: 16px;
     color: #707273;
     font-family: Verdana, sans-serif;
-    background:  #F3FEFF;
+    /*background:  #F3FEFF;*/
 }
 button{
     font-family: Verdana, sans-serif;
@@ -45,6 +45,8 @@ button{
 .wrapper{
     min-height: 100%;
     overflow: hidden;  /* Обрізає контент без прокрутки */
+    display: flex;
+    flex-direction: column;
 }
 /*__________________________________________________________________________________*/
 ._container{
@@ -53,6 +55,7 @@ button{
 }
 /*____________________ШАПКА_________________________________________________________*/
 .header{
+    background-color: #2C353E;
     width: 100%;
     left: 0;
     top: 0;
@@ -60,14 +63,14 @@ button{
 .header__container {
     display: flex;
     justify-content: space-between;
-    min-height: 120px;
+    min-height: 100px;
     align-items: center;
     padding: 0 15px;
     box-sizing: content-box;
 }
 .header__logo{
     font-size: 21px;
-    color: #252626;
+    color: #d9d4d4;
     font-weight: 600;
 }
 .header__menu{
@@ -78,7 +81,7 @@ button{
     display: flex;
 }
 .menu__link{
-    color: #969999;
+    color: #cacece;
     font-weight: 400;
     line-height: 160%;
     padding: 0 0 10px 0;
@@ -105,9 +108,9 @@ button{
     padding: 11px 15px;
     border-radius: 6px;
     border: 3px solid #35AFBF;
-    color: #969999;
+    color: #bfc4c4;
 }
-.button__register:hover, .button__sing__in:hover{
+.button:hover{
     background: #35AFBF;
     color: white;
     opacity: 0.7;
@@ -116,7 +119,53 @@ button{
 
 }
 /*____________________MAIN_________________________________________________________*/
-
+.main{
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: white;
+    flex: 1 1 auto;
+}
+.main__container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.main__group{
+    display: flex;
+    border-radius: 3px;
+    background-color: #707273;
+    height: content-box;
+    width: 49%;
+    margin: 10px 0 10px 0;
+    padding: 5px;
+}
+.main__group:hover{
+    background-color: #208691;
+}
+.group{}
+.group__img{
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 3px;
+}
+.group__info{
+    width: 400px;
+    background: white;
+    border-radius: 3px;
+    margin: 0 0 0 5px;
+    padding: 7px 7px 7px 15px;
+}
+.group__info > a{
+    line-height: 20px;
+    font-size: 15px;
+}
+.info__name{
+    font-weight: 600;
+}
+.info__users{}
+.info__context{}
 /*____________________FOOTER_________________________________________________________*/
 .footer{
     width: 100%;
