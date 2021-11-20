@@ -55,7 +55,7 @@ class AlbumForm(FlaskForm):
             raise ValidationError('Таке ім\'я вже існує')
 
 
-class EditAlbum(FlaskForm):
+class EditAlbumForm(FlaskForm):
     label = StringField("Ім\'я альбому: ", validators=[DataRequired(), Length(min=1, max=30)])
     img = FileField("Обкладинка: ", validators=[DataRequired()])
     title = StringField("Ім\'я пісні: ", validators=[DataRequired(), Length(min=1, max=30)])

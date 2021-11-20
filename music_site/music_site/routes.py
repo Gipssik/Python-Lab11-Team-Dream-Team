@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect
 from flask_login import login_user, logout_user, login_required
 
 from . import app, bcrypt, db
-from .forms import RegistrationForm, LoginForm, GroupForm, AlbumForm
+from .forms import RegistrationForm, LoginForm, GroupForm, AlbumForm, EditAlbumForm
 from .models import User, Group, Album, Song
 
 @app.route('/')
@@ -119,25 +119,24 @@ def album_page(group_id, album_id):
 @app.route('/groups/<int:group_id>/albums/<int:album_id>/edit', methods=['GET', 'POST'])
 # @login_required
 def edit(group_id, album_id):
-    # form = None
-    # if form.validate_on_submit():
-    #     album = Album.query.filter_by(id=album_id, group_id=group_id).first()
-    #     if not album:
-    #         flash('Альбом не знайдено', 'danger')
-    #         return redirect(url_for('home'))
+    form = EditAlbumForm()
+    if form.validate_on_submit():
+        album = Album.query.filter_by(id=album_id, group_id=group_id).first()
+        if not album:
+            flash('Альбом не знайдено', 'danger')
+            return redirect(url_for('home'))
 
-    #     album.image = form.image.data
-    #     album.label = form.label.data
-    #
-    #     song = Song(
-    #         title=form.title.data,
-    #         album=album,
-    #         media=form.media.data
-    #     )
-    #
-    #     db.session.add(song)
-    #     db.session.commit()
-    #     flash(f'Пісня успішно додана до альбому {album.label}!', 'success')
-    #     return redirect(url_for('edit'))
-    # return render_template('edit.html', title='Редагування', form=form)
-    ...
+        album.image = form.img.data
+        album.label = form.label.data
+
+        song = Song(
+            title=form.title.data,
+            album=album,
+            media=form.media.data
+        )
+
+        db.session.add(song)
+        db.session.commit()
+        flash(f'Пісня успішно додана до альбому {album.label}!', 'success')
+        return redirect(url_for('edit'))
+    return render_template('edit.html', title='Редагування', form=form)
