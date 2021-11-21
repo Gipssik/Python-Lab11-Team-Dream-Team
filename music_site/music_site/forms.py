@@ -59,7 +59,7 @@ class AlbumForm(FlaskForm):
 class EditAlbumForm(FlaskForm):
     label = StringField("Ім\'я альбому: ", validators=[DataRequired(), Length(min=1, max=30)])
     img = FileField("Обкладинка: ", validators=[DataRequired()])
-    title = StringField("Ім\'я пісні: ", validators=[DataRequired(), Length(min=1, max=30)])
+    title = StringField("Назва пісні: ", validators=[DataRequired(), Length(min=1, max=30)])
     media = FileField("Пісня: ", validators=[DataRequired()])
     submit = SubmitField("Добавити")
 

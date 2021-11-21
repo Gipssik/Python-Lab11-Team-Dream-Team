@@ -1,5 +1,5 @@
-import secrets
 import os
+import secrets
 from . import app
 from PIL import Image
 

@@ -2,9 +2,11 @@ from flask import render_template, url_for, flash, redirect, request
 from flask_login import login_user, logout_user, login_required, current_user
 
 from . import app, bcrypt, db
-from .forms import RegistrationForm, LoginForm, GroupForm, AlbumForm, EditAlbumForm
-from .models import User, Group, Album, Song
+from .forms import RegistrationForm, LoginForm, GroupForm, AlbumForm, EditAlbumForm, UpdateUserInfoForm
+from .models import User, Group, Album, Song, Role
 from .services import save_image
+
+
 
 @app.route('/')
 @app.route('/home', methods=['GET'])
@@ -48,23 +50,30 @@ def logout():
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
-    # form = None
-    # if form.validate_on_submit():
-    #     if form.img.data:
-    #         current_user.image = save_image(form.img.data)
-    #     current_user.username = form.username.data
-    #     current_user.email = form.email.data
-    #
-    #     db.session.commit()
-    #     flash('Ваш аккаунт оновлено!', 'success')
-    #     return redirect(url_for('account'))
-    # elif request.method == 'GET':
-    #     form.username.data = current_user.username
-    #     form.email.data = current_user.email
-    #
-    # image = url_for('static', filename=f'img/{current_user.image}')
-    # return render_template('account.html', title='Account', image=image, form=form)
-    ...
+    form = UpdateUserInfoForm()
+    if form.validate_on_submit():
+        if form.img.data:
+            current_user.image = save_image(form.img.data)
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+
+        if form.musician.data:
+            current_user.role = Role.query.\
+                filter_by(title="Musician").first()
+        else:
+            current_user.role = Role.query.\
+                filter_by(title="User").first()
+
+        db.session.commit()
+        flash('Ваш аккаунт оновлено!', 'success')
+        return redirect(url_for('account'))
+
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+
+    image = url_for('static', filename=f'img/{current_user.image}')
+    return render_template('account.html', title='Account', image=image, form=form)
 
 @app.route('/groups/create', methods=['GET', 'POST'])
 # @login_required
