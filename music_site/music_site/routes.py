@@ -7,7 +7,6 @@ from .models import User, Group, Album, Song, Role
 from .services import save_image
 
 
-
 @app.route('/')
 @app.route('/home', methods=['GET'])
 def home():
