@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+<main class="main">
+    <div class="main__container _container">
+
+        {% for musician in musicians %}
+        <div class="main__group group">
+            <div class="group__img">
+                <img src="{{ musician.image }}">
+            </div>
+            <div class="group__info info">
+                <a href="" class="info__name">{{ musician.name }}</a><br>
+
+                <a href="" class="info__users">{{ musician.users|map(attribute="username")|join(', ') }}</a><br>
+
+                <a href="" class="info__context">{{ musician.content }}</a>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</main>
+{% endblock %}

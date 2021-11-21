@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(16), unique=True, nullable=False)
     email = db.Column(db.String(32), unique=True, nullable=False)
-    password = db.Column(db.String(32), unique=False, nullable=False)
+    password = db.Column(db.String(64), unique=False, nullable=False)
     image = db.Column(db.String(64), unique=False, nullable=False, default='default.jpg')
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=False)
     group_id = db.Column(db.Integer, db.ForeignKey('group.id'), nullable=True)
@@ -35,7 +35,6 @@ class Song(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(32), unique=False, nullable=False)
     media = db.Column(db.String(64), unique=False, nullable=False)
-    image = db.Column(db.String(64), unique=False, nullable=False, default='default.jpg')
     album_id = db.Column(db.Integer, db.ForeignKey('album.id'), nullable=False)
 
     def __repr__(self):
@@ -57,7 +56,7 @@ class Album(db.Model):
 class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), unique=False, nullable=False)
-    content = db.Column(db.String(1000), unique=False, nullable=False)
+    content = db.Column(db.Text, unique=False, nullable=True)
     data_created = db.Column(db.DateTime, unique=False, nullable=False, default=datetime.utcnow)
     image = db.Column(db.String(64), unique=False, nullable=False, default='default.jpg')
     users = db.relationship('User', backref='group', lazy=True)

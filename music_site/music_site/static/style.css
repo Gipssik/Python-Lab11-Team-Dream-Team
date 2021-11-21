@@ -1,0 +1,144 @@
+/*__________________________________________________________________________________*/
+.wrapper{
+    min-height: 100%;
+    overflow: hidden;  /* Обрізає контент без прокрутки */
+    display: flex;
+    flex-direction: column;
+}
+/*__________________________________________________________________________________*/
+._container{
+    max-width: 1046px;
+    margin: 0 auto;  /* Виставляє блок посередині */
+}
+/*____________________ШАПКА_________________________________________________________*/
+.header{
+    background-color: #2C353E;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    min-height: 100px;
+    align-items: center;
+    padding: 0 15px;
+    box-sizing: content-box;
+}
+.header__logo{
+    font-size: 21px;
+    color: #d9d4d4;
+    font-weight: 600;
+}
+.header__menu{
+    margin: 0 0 0 90px;
+}
+.menu{}
+.menu__list{
+    display: flex;
+}
+.menu__link{
+    color: #cacece;
+    font-weight: 400;
+    line-height: 160%;
+    padding: 0 0 10px 0;
+}
+.menu__item{
+
+}
+.menu__item:not(:last-child){
+    margin: 0 25px 0 0;
+}
+.menu__link:hover{
+    color: #35AFBF;
+    font-weight: 500;
+    border: solid #35AFBF;
+    border-width: 0 0 2px 0;
+}
+
+.logo__menu{
+    display: flex;
+}
+
+.button{
+    background: transparent;
+    padding: 11px 15px;
+    border-radius: 6px;
+    border: 3px solid #35AFBF;
+    color: #bfc4c4;
+}
+.button:hover{
+    background: #35AFBF;
+    color: white;
+    opacity: 0.7;
+}
+.header__buttons{
+
+}
+/*____________________MAIN_________________________________________________________*/
+.main{
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: white;
+    flex: 1 1 auto;
+}
+.main__container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.main__group{
+    display: flex;
+    border-radius: 3px;
+    background-color: #707273;
+    height: content-box;
+    width: 49%;
+    margin: 10px 0 10px 0;
+    padding: 5px;
+}
+.main__group:hover{
+    background-color: #208691;
+}
+.group{}
+.group__img{
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 3px;
+}
+.group__info{
+    width: 400px;
+    background: white;
+    border-radius: 3px;
+    margin: 0 0 0 5px;
+    padding: 7px 7px 7px 15px;
+}
+.group__info > a{
+    line-height: 20px;
+    font-size: 15px;
+}
+.info__name{
+    font-weight: 600;
+}
+.info__users{}
+.info__context{}
+/*____________________FOOTER_________________________________________________________*/
+.footer{
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: #2C353E;
+    height: 100%;
+}
+.footer__container{
+    display: flex;
+}
+.footer__copy{
+    padding: 15px 50px 15px 0;
+}
+.footer__img{}
+.footer__user{
+    color: white;
+    font-size: 12px;
+}
