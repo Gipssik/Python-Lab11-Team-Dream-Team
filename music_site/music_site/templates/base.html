@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
@@ -13,6 +14,7 @@
     <link href="../static/reset.css" rel="stylesheet">
     <link href="../static/header_footer.css" rel="stylesheet">
 </head>
+
 <body>
     <div class="wrapper">
         <header class="header">
@@ -21,26 +23,23 @@
                     <a href="{{ url_for('home') }}" class="header__logo">Muzik</a>
                     <div class="header__menu menu">
                         <ul class="menu__list">
-                            {% if current_user.is_authenticated  %}
-                                {% if  current_user.role.title == 'Musician' %}
-                                    <li class="menu__item">
-                                        <a href="{{ url_for('create_group') }}" class="menu__link">Створення групи</a>
-                                    </li>
-                                    <li class="menu__item">
-                                        <a href="{{ url_for('create_group') }}" class="menu__link">Створення альбому</a>
-                                    </li>
-                                {% endif %}
+                            {% if current_user.is_authenticated %}
+                            {% if current_user.role.title == 'Musician' %}
+                            <li class="menu__item">
+                                <a href="{{ url_for('create_group') }}" class="menu__link">Створення групи</a>
+                            </li>
+                            {% endif %}
                             {% endif %}
                         </ul>
                     </div>
                 </div>
                 <div class="header__buttons">
-                    {% if current_user.is_authenticated  %}
-                        <a href="{{ url_for('account') }}" class="button__register button">Акаунт</a>
-                        <a href="{{ url_for('logout') }}" class="button__register button">Вийти</a>
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('account') }}" class="button__register button">Акаунт</a>
+                    <a href="{{ url_for('logout') }}" class="button__register button">Вийти</a>
                     {% else %}
-                        <a href="{{ url_for('register') }}" class="button__register button">Зареєструватися</a>
-                        <a href="{{ url_for('login') }}" class="button__register button">Увійти</a>
+                    <a href="{{ url_for('register') }}" class="button__register button">Зареєструватися</a>
+                    <a href="{{ url_for('login') }}" class="button__register button">Увійти</a>
                     {% endif %}
                 </div>
             </div>
@@ -52,13 +51,15 @@
                     <a href="https://www.instagram.com/bogdan_dubinchenko/" target="_blank" class="footer__img">
                         <img src="../static/img/instagram.png" alt="Instagram">
                     </a>
-                    <a href="https://www.instagram.com/bogdan_dubinchenko/" target="_blank" class="footer__user">Дубинченко Богдан</a>
+                    <a href="https://www.instagram.com/bogdan_dubinchenko/" target="_blank"
+                        class="footer__user">Дубинченко Богдан</a>
                 </div>
                 <div class="footer__copy">
                     <a href="https://www.instagram.com/roma.kormysh/" target="_blank" class="footer__img">
                         <img src="../static/img/instagram.png" alt="Instagram">
                     </a>
-                    <a href="https://www.instagram.com/roma.kormysh/" target="_blank" class="footer__user">Кормиш Роман</a>
+                    <a href="https://www.instagram.com/roma.kormysh/" target="_blank" class="footer__user">Кормиш
+                        Роман</a>
                 </div>
                 <div class="footer__copy">
                     <a href="https://www.instagram.com/thegipss/" target="_blank" class="footer__img">
@@ -70,11 +71,13 @@
                     <a href="https://www.instagram.com/_elumion_/" target="_blank" class="footer__img">
                         <img src="../static/img/instagram.png" alt="Instagram">
                     </a>
-                    <a href="https://www.instagram.com/_elumion_/" target="_blank" class="footer__user">Довгалюк Владислав</a>
+                    <a href="https://www.instagram.com/_elumion_/" target="_blank" class="footer__user">Довгалюк
+                        Владислав</a>
                 </div>
             </div>
         </footer>
     </div>
     <script src="../static/script.js"></script>
 </body>
+
 </html>
