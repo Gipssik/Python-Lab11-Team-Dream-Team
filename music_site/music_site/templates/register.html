@@ -8,14 +8,6 @@
 <main class="main">
     <div class="main__container _container">
         <div class="main__registration">
-{#            {% with messages = get_flashed_messages(with_categorise=true)  %}#}
-{#                {% if messages %}#}
-{#                    {% for message in messages %}#}
-{#                        <div class="main__messages">#}
-{#                            {{ messages }}#}
-{#                        </div>#}
-{#                    {% endfor %}#}
-{#            {% endwith %}#}
             {% if form.username.errors %}
                 <div class="messages_error">
                     {% for error in form.username.errors %}

@@ -26,10 +26,10 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    username = StringField("Ім\'я: ", validators=[DataRequired(), Length(min=3, max=20)])
+    username = StringField("Ім\'я: ", validators=[DataRequired(), Length(min=3, max=50)])
     password = PasswordField("Пароль: ", validators=[DataRequired()])
     remember = BooleanField("Запам\'ятати: ")
-    submit = SubmitField("Війти")
+    submit = SubmitField("Увійти")
 
 
 class GroupForm(FlaskForm):

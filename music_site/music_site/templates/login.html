@@ -1,1 +1,46 @@
 {% extends 'base.html' %}
+
+{% block style %}
+<link href="../static/style_register.css" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+<main class="main">
+    <div class="main__container _container">
+        <div class="main__registration">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="main__messages__{{ category }}">
+                            <a class="error">{{ messages }}{{ category }}</a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <h1 class="main__name__form">Авторизація</h1>
+            <a class="main__info__form">Будь ласка, заповніть цю форму, щоб зайти в свій обліковий запис</a>
+            <hr>
+            <form method="post" action="">
+                <div>
+                    {{ form.username.label(class="form__label") }}<br>
+                    {{ form.username(class="form__text", placeholder="Введіть ім'я") }}
+                </div>
+                <div>
+                    {{ form.password.label(class="form__label") }}<br>
+                    {{ form.password(class="form__text", placeholder="Введіть пароль") }}
+                </div>
+                <div>
+                    {{ form.remember.label(class="form__label") }}
+                    {{ form.remember(class="form__checkbox") }}
+                </div>
+                <div>
+                    {{ form.submit(class="form__submit") }}
+                </div>
+            </form>
+            <hr>
+            <a>У вас немає облікового запису?  </a><a class="main__login" href="{{ url_for('register') }}">Зареєструватися</a>
+        </div>
+    </div>
+</main>
+{% endblock %}
