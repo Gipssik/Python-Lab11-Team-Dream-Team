@@ -22,6 +22,7 @@
             <a class="main__info__form">Будь ласка, заповніть цю форму, щоб зайти в свій обліковий запис</a>
             <hr>
             <form method="post" action="">
+	            {{ form.hidden_tag() }}
                 <div>
                     {{ form.username.label(class="form__label") }}<br>
                     {{ form.username(class="form__text", placeholder="Введіть ім'я") }}
