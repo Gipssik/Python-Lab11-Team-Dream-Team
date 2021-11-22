@@ -71,7 +71,7 @@ class EditAlbumForm(FlaskForm):
     def validate_media(self, media):
         media_album = Song.query.filter_by(media=media.data).first()
         if media_album:
-            raise ValidationError('Таке ім\'я вже існує')
+            raise ValidationError('Ім\'я вже існує')
 
 
 class UpdateUserInfoForm(FlaskForm):

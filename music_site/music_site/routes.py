@@ -19,7 +19,21 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data)
-        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+
+        if form.musician.data:
+            role = Role.query\
+                .filter_by(title="Musician").first()
+        else:
+            role = Role.query\
+                .filter_by(title="User").first()
+
+        user = User(
+            username=form.username.data,
+            email=form.email.data,
+            password=hashed_password,
+            role=role
+        )
+
         db.session.add(user)
         db.session.commit()
         flash('Аккаунт успішно створено!', 'success')
@@ -51,17 +65,17 @@ def logout():
 def account():
     form = UpdateUserInfoForm()
     if form.validate_on_submit():
-        if form.img.data:
-            current_user.image = save_image(form.img.data)
+        if form.image.data:
+            current_user.image = save_image(form.image.data)
         current_user.username = form.username.data
         current_user.email = form.email.data
 
         if form.musician.data:
-            current_user.role = Role.query.\
-                filter_by(title="Musician").first()
+            current_user.role = Role.query\
+                .filter_by(title="Musician").first()
         else:
-            current_user.role = Role.query.\
-                filter_by(title="User").first()
+            current_user.role = Role.query\
+                .filter_by(title="User").first()
 
         db.session.commit()
         flash('Ваш аккаунт оновлено!', 'success')
