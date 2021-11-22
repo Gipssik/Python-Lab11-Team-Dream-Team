@@ -12,12 +12,11 @@
                 {% if messages %}
                     {% for category, message in messages %}
                         <div class="main__messages__{{ category }}">
-                            <a class="error">{{ messages }}{{ category }}</a>
+                            <a class="error">{{ message }}</a>
                         </div>
                     {% endfor %}
                 {% endif %}
             {% endwith %}
-
             <h1 class="main__name__form">Авторизація</h1>
             <a class="main__info__form">Будь ласка, заповніть цю форму, щоб зайти в свій обліковий запис</a>
             <hr>

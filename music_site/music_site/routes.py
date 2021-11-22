@@ -159,7 +159,6 @@ def album_page(album_id):
     if not album:
         flash('Альбом не знайдено', 'danger')
         return redirect(url_for('home'))
-    return render_template('album_page.html', title=album.label, album=album)
 
 
 @app.route('/albums/<int:album_id>/edit', methods=['GET', 'POST'])
