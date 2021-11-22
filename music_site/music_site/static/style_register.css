@@ -1,0 +1,75 @@
+.main{
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: white;
+    flex: 1 1 auto;
+}
+hr{
+    border: 1px solid #2C353E;
+    margin: 25px 0 25px 0;
+    width: 100%;
+    background: #2C353E;
+}
+.main__container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.main__registration{
+    padding: 10px 0 0 0;
+    width: 100%;
+}
+.main__name__form{
+    font-size: 24px;
+    font-weight: 600;
+    color: #2C353E;
+    margin-bottom: 20px;
+}
+.main__info__form{
+    font-size: 16px;
+}
+.form__label{
+    margin: 10px 0 10px 0;
+}
+.form__text{
+    border: 2px solid #35AFBF;
+    padding: 12px;
+    margin: 5px 0 22px 0;
+    width: 50%;
+    font-size: 14px;
+    border-radius: 6px;
+}
+.form__checkbox{
+    margin: 0 0 0 20px;
+    width: 15px;
+    height: 15px;
+}
+.form__submit{
+    background: #42515e;
+    padding: 11px 15px;
+    border-radius: 6px;
+    color: #d9d4d4;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 22px 0 22px 0;
+    width: 50%;
+}
+.main__login{
+    margin-left: 10px;
+}
+.main__registration:last-child{
+    margin: 22px 0 40px 0;
+}
+.messages_error{
+    width: 100%;
+    background: rgba(255, 68, 0, 0.48);
+    border-radius: 10px;
+    height: 50px;
+    margin: 0 0 20px 0;
+}
+.error{
+    font-size: 17px;
+    padding: 16px;
+    position: absolute;
+}

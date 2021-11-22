@@ -9,15 +9,16 @@
     <title>Головна</title>
     {% endif %}
 
-    <link href="../static/style.css" rel="stylesheet">
+    {% block style %}{% endblock %}
     <link href="../static/reset.css" rel="stylesheet">
+    <link href="../static/header_footer.css" rel="stylesheet">
 </head>
 <body>
     <div class="wrapper">
         <header class="header">
             <div class="header__container _container">
                 <div class="logo__menu">
-                    <a href="" class="header__logo">Muzik</a>
+                    <a href="{{ url_for('home') }}" class="header__logo">Muzik</a>
                     <div class="header__menu menu">
                         <ul class="menu__list">
 {#                            {% if current_user.is_authenticated  %}#}

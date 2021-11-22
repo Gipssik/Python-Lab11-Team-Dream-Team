@@ -6,10 +6,10 @@ from .models import User, Group, Album, Song
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField("Ім\'я: ", validators=[DataRequired(), Length(min=3, max=20)])
-    email = StringField("Почта: ", validators=[DataRequired(), Email()])
-    password = PasswordField("Пароль: ", validators=[DataRequired(), Length(min=4, max=100)])
-    musician = BooleanField("Я музикант: ")
+    username = StringField("Ім\'я", validators=[DataRequired(), Length(min=3, max=20)])
+    email = StringField("Почта", validators=[DataRequired(), Email()])
+    musician = BooleanField("Я музикант")
+    password = PasswordField("Пароль", validators=[DataRequired(), Length(min=4, max=100)])
     confirm_password = PasswordField(
         'Повторіть пароль', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Зареєструватися')
@@ -77,5 +77,6 @@ class EditAlbumForm(FlaskForm):
 class UpdateUserInfoForm(FlaskForm):
     username = StringField("Ім\'я: ", validators=[DataRequired(), Length(min=3, max=20)])
     email = StringField("Почта: ", validators=[DataRequired(), Email()])
+    image = FileField("Картинка: ", validators=[DataRequired()])
     musician = BooleanField("Я музикант: ")
     submit = SubmitField("Змінити")
