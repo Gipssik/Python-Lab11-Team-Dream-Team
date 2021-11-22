@@ -21,16 +21,16 @@
                     <a href="{{ url_for('home') }}" class="header__logo">Muzik</a>
                     <div class="header__menu menu">
                         <ul class="menu__list">
-{#                            {% if current_user.is_authenticated  %}#}
-{#                                {% if  current_user.role %}#}
-                                        <li class="menu__item">
-                                            <a href="{{ url_for('create_group') }}" class="menu__link">Створення групи</a>
-                                        </li>
-{#                                    {% endif %}#}
-                                        <li class="menu__item">
-                                            <a href="{{ url_for('create_group') }}" class="menu__link">Створення альбому</a>
-                                        </li>
-{#                            {% endif %}#}
+                            {% if current_user.is_authenticated  %}
+                                {% if  current_user.role.title == 'Musician' %}
+                                    <li class="menu__item">
+                                        <a href="{{ url_for('create_group') }}" class="menu__link">Створення групи</a>
+                                    </li>
+                                    <li class="menu__item">
+                                        <a href="{{ url_for('create_group') }}" class="menu__link">Створення альбому</a>
+                                    </li>
+                                {% endif %}
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
