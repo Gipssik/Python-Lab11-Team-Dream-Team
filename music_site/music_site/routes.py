@@ -44,9 +44,12 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    print(form)
+    print(form.validate_on_submit())
+    print(form.data)
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password):
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             return redirect(url_for('home'))
         flash('Невдача. Перевірте логін і пароль.', 'danger')
