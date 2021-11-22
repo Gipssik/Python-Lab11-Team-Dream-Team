@@ -91,8 +91,9 @@ def account():
     image = url_for('static', filename=f'img/{current_user.image}')
     return render_template('account.html', title='Account', image=image, form=form)
 
+
 @app.route('/groups/create', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def create_group():
     form = GroupForm()
     if form.validate_on_submit():
@@ -120,7 +121,7 @@ def create_group():
 
 
 @app.route('/groups/<int:group_id>')
-# @login_required
+@login_required
 def group_page(group_id):
     group = Group.query.get(group_id)
     if not group:
@@ -132,7 +133,7 @@ def group_page(group_id):
 
 
 @app.route('/groups/<int:group_id>/albums/create', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def create_album(group_id):
     form = AlbumForm()
     if form.validate_on_submit():
@@ -156,7 +157,7 @@ def create_album(group_id):
 
 
 @app.route('/groups/<int:group_id>/albums/<int:album_id>', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def album_page(group_id, album_id):
     album = Album.query.filter_by(id=album_id, group_id=group_id).first()
     if not album:
@@ -168,7 +169,7 @@ def album_page(group_id, album_id):
 
 
 @app.route('/groups/<int:group_id>/albums/<int:album_id>/edit', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def edit_group(group_id, album_id):
     form = EditAlbumForm()
     if form.validate_on_submit():
