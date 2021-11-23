@@ -3,7 +3,7 @@
 
 
 {% block style %}
-<link href="../static/style_create_album.css" rel="stylesheet">
+<link href="../static/style_create_group.css" rel="stylesheet">
 {% endblock %}
 
 
@@ -34,8 +34,8 @@
                 {{form.content.label(class="form")}}
                 {{form.content(class="form__textarea")}}
             </div>
-            <div class="form__submit">
-                {{form.submit(class="form__submit__btn")}}
+            <div class="submit">
+                {{form.submit(class="form__submit")}}
             </div>
         </form>
     </div>
