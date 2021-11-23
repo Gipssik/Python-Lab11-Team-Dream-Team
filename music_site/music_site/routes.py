@@ -100,15 +100,18 @@ def create_group():
             content=form.content.data,
         )
 
+        print(form.img)
+        print(form.img.data)
         if form.img.data:
             group.image = save_image(form.img.data)
+            print(group.image)
 
         for username in form.users.data.split(", "):
             user = User.query.filter_by(username=username).first()
             if not user:
                 flash('Користувача не знайдено', 'danger')
                 return redirect(url_for('create_group'))
-            user.group = group
+            group.users.append(user)
 
         db.session.add(group)
         db.session.commit()
@@ -181,7 +184,6 @@ def edit_album(album_id):
             album.image = save_image(form.img.data)
 
         album.label = form.label.data
-
         if form.title.data and form.media.date:
             song = Song(
                 title=form.title.data,

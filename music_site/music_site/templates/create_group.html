@@ -10,11 +10,16 @@
 {% block main %}
 <main class="main">
     <div class="main__inner">
+	    {% for field, error in form.errors.items() %}
+		    <div class="messages_error">
+			    <a class="error">{{ ', '.join(error) }}</a>
+		    </div>
+	    {% endfor %}
         <h1 class="title">Створення групи</h1>
         <p class="info">Будь ласка заповніть дану форму для створення музичного гурту</p>
         <hr>
         <form action="" method="post">
-            {{form.hidden_tag() }}
+            {{ form.hidden_tag() }}
             <div class="group__name">
                 {{form.name.label(class="form__label")}}
                 {{form.name(class="form__text",placeholder="Введіть ім'я групи")}}
