@@ -8,34 +8,11 @@
 <main class="main">
     <div class="main__container _container">
         <div class="main__registration">
-            {% if form.username.errors %}
-                <div class="messages_error">
-                    {% for error in form.username.errors %}
-                        <a class="error">{{ error }}</a>
-                    {% endfor %}
-                </div>
-            {% endif %}
-            {% if form.email.errors %}
-                <div class="messages_error">
-                    {% for error in form.email.errors %}
-                        <a class="error">{{ error }}</a>
-                    {% endfor %}
-                </div>
-            {% endif %}
-            {% if form.password.errors %}
-                <div class="messages_error">
-                    {% for error in form.password.errors %}
-                        <a class="error">{{ error }}</a>
-                    {% endfor %}
-                </div>
-            {% endif %}
-            {% if form.confirm_password.errors %}
-                <div class="messages_error">
-                    {% for error in form.confirm_password.errors %}
-                        <a class="error">{{ error }}</a>
-                    {% endfor %}
-                </div>
-            {% endif %}
+	        {% for field, error in form.errors.items() %}
+		        <div class="messages_error">
+			        <a class="error">{{ ', '.join(error) }}</a>
+		        </div>
+	        {% endfor %}
             <h1 class="main__name__form">Реєстрація</h1>
             <a class="main__info__form">Будь ласка, заповніть цю форму, щоб створити обліковий запис</a>
             <hr>
