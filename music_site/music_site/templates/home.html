@@ -8,18 +8,20 @@
 <main class="main">
     <div class="main__container _container">
         {% for musician in musicians %}
-        <div class="main__group group">
-            <div class="group__img">
-                <img src="{{ musician.image }}">
-            </div>
-            <div class="group__info info">
-                <a class="info__name">{{ musician.name }}</a><br>
+            <a href="groups/{{ musician.id }}">
+                <div class="main__group group">
+                    <div class="group__img">
+                        <img src="{{ musician.image }}">
+                    </div>
+                    <div class="group__info info">
+                        <p class="info__name">{{ musician.name }}</p><br>
 
-                <a class="info__users">{{ musician.users|map(attribute="username")|join(', ') }}</a><br>
+                        <p class="info__users">{{ musician.users|map(attribute="username")|join(', ') }}</p><br>
 
-                <a class="info__context">{{ musician.content }}</a>
-            </div>
-        </div>
+                        <p class="info__context">{{ musician.content }}</p>
+                    </div>
+                </div>
+            </a>
         {% endfor %}
     </div>
 </main>
