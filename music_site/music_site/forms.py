@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, FieldList
 # from wtforms.fields.simple import BooleanField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
@@ -41,7 +41,7 @@ class GroupForm(FlaskForm):
     name = StringField("Ім\'я групи: ", validators=[
                        DataRequired(), Length(min=1, max=20)])
     users = StringField("Ім\'я співака(ів): ", validators=[DataRequired()])
-    img = FileField("Фото групи: ", validators=[DataRequired()])
+    img = FileField("Фото групи: ", validators=[FileRequired()])
     content = StringField("Опис групи: ", widget=TextArea(),
                           validators=[DataRequired()])
     submit = SubmitField("Добавити")
