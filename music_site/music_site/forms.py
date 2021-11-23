@@ -3,13 +3,16 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField, FileF
 # from wtforms.fields.simple import BooleanField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 from .models import User, Group, Album, Song
+from wtforms.widgets import TextArea
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField("Ім\'я", validators=[DataRequired(), Length(min=3, max=20)])
+    username = StringField("Ім\'я", validators=[
+                           DataRequired(), Length(min=3, max=20)])
     email = StringField("Почта", validators=[DataRequired(), Email()])
     musician = BooleanField("Я музикант")
-    password = PasswordField("Пароль", validators=[DataRequired(), Length(min=4, max=100)])
+    password = PasswordField("Пароль", validators=[
+                             DataRequired(), Length(min=4, max=100)])
     confirm_password = PasswordField(
         'Повторіть пароль', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Зареєструватися')
@@ -26,17 +29,20 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    username = StringField("Ім\'я: ", validators=[DataRequired(), Length(min=3, max=50)])
+    username = StringField("Ім\'я: ", validators=[
+                           DataRequired(), Length(min=3, max=50)])
     password = PasswordField("Пароль: ", validators=[DataRequired()])
     remember = BooleanField("Запам\'ятати: ")
     submit = SubmitField("Увійти")
 
 
 class GroupForm(FlaskForm):
-    name = StringField("Ім\'я групи: ", validators=[DataRequired(), Length(min=1, max=20)])
+    name = StringField("Ім\'я групи: ", validators=[
+                       DataRequired(), Length(min=1, max=20)])
     users = StringField("Ім\'я співака(ів): ", validators=[DataRequired()])
     img = FileField("Фото групи: ", validators=[DataRequired()])
-    content = StringField("Опис групи: ", validators=[DataRequired()])
+    content = StringField("Опис групи: ", widget=TextArea(),
+                          validators=[DataRequired()])
     submit = SubmitField("Добавити")
 
     def validate_group(self, name):
@@ -46,7 +52,8 @@ class GroupForm(FlaskForm):
 
 
 class AlbumForm(FlaskForm):
-    label = StringField("Ім\'я альбому: ", validators=[DataRequired(), Length(min=1, max=30)])
+    label = StringField("Ім\'я альбому: ", validators=[
+                        DataRequired(), Length(min=1, max=30)])
     img = FileField("Обкладинка: ", validators=[DataRequired()])
     submit = SubmitField("Добавити")
 
@@ -57,9 +64,11 @@ class AlbumForm(FlaskForm):
 
 
 class EditAlbumForm(FlaskForm):
-    label = StringField("Ім\'я альбому: ", validators=[DataRequired(), Length(min=1, max=30)])
+    label = StringField("Ім\'я альбому: ", validators=[
+                        DataRequired(), Length(min=1, max=30)])
     img = FileField("Обкладинка: ", validators=[DataRequired()])
-    title = StringField("Назва пісні: ", validators=[DataRequired(), Length(min=1, max=30)])
+    title = StringField("Назва пісні: ", validators=[
+                        DataRequired(), Length(min=1, max=30)])
     media = FileField("Пісня: ", validators=[DataRequired()])
     submit = SubmitField("Добавити")
 
@@ -75,7 +84,8 @@ class EditAlbumForm(FlaskForm):
 
 
 class UpdateUserInfoForm(FlaskForm):
-    username = StringField("Ім\'я: ", validators=[DataRequired(), Length(min=3, max=20)])
+    username = StringField("Ім\'я: ", validators=[
+                           DataRequired(), Length(min=3, max=20)])
     email = StringField("Почта: ", validators=[DataRequired(), Email()])
     image = FileField("Картинка: ", validators=[DataRequired()])
     musician = BooleanField("Я музикант: ")
