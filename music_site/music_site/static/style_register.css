@@ -44,6 +44,7 @@ hr{
     margin: 0 0 0 20px;
     width: 15px;
     height: 15px;
+    transform: translateY(15%);
 }
 .form__submit{
     background: #42515e;

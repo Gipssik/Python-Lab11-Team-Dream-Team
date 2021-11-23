@@ -4,6 +4,12 @@
 <link href="../static/style_group_page.css" rel="stylesheet">
 {% endblock %}
 
+{% block button %}
+<li class="menu__item">
+    <a href="{{ url_for('create_album', group_id = group.id) }}" class="menu__link">Створення альбому</a>
+</li>
+{% endblock %}
+
 {% block main %}
 <main class="main">
     <div class="main__container _container">
