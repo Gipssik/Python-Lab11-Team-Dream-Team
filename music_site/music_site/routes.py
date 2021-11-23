@@ -183,7 +183,6 @@ def edit_album(album_id):
             album.image = save_image(form.img.data)
 
         album.label = form.label.data
-
         if form.title.data and form.media.date:
             song = Song(
                 title=form.title.data,
