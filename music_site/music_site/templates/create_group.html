@@ -10,6 +10,11 @@
 {% block main %}
 <main class="main">
     <div class="main__inner">
+	    {% for field, error in form.errors.items() %}
+		    <div class="messages_error">
+			    <a class="error">{{ ', '.join(error) }}</a>
+		    </div>
+	    {% endfor %}
         <h1 class="title">Створення групи</h1>
         <p class="info">Будь ласка заповніть дану форму для створення музичного гурту</p>
         <hr>
