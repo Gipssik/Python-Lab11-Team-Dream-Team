@@ -11,13 +11,11 @@
             <a href="groups/{{ musician.id }}">
                 <div class="main__group group">
                     <div class="group__img">
-                        <img src="{{ musician.image }}">
+                        <img src="../static/img/{{ musician.image }}">
                     </div>
                     <div class="group__info info">
                         <p class="info__name">{{ musician.name }}</p><br>
-
                         <p class="info__users">{{ musician.users|map(attribute="username")|join(', ') }}</p><br>
-
                         <p class="info__context">{{ musician.content }}</p>
                     </div>
                 </div>
