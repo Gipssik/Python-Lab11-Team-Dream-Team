@@ -1,6 +1,6 @@
 .main {
     margin: 0 auto;
-    width: 1200px;
+    max-width: 1046px;
 }
 .main__inner {
     display: flex;
@@ -15,27 +15,12 @@
     color: #2c353e;
 }
 
-.info {
-}
-
 form {
     display: flex;
     flex-direction: column;
-    /* align-items: stretch; */
     width: 100%;
     gap: 25px;
     padding: 0 60px 15px 0;
-}
-
-.group__name {
-}
-.members {
-}
-.group__img {
-}
-.description {
-}
-.form__submit {
 }
 
 .group__name,
@@ -46,8 +31,6 @@ form {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    /* justify-content: space-between;
-    align-items: center; */
 }
 
 .form__img__btn {
@@ -69,4 +52,13 @@ form {
     font-size: 14px;
     position: absolute;
     transform: translateX(-100%);
+}
+
+@media (max-width: 600px) {
+    .form__textarea {
+        width: 100% !important;
+    }
+    .form__text {
+        width: 100% !important;
+    }
 }
