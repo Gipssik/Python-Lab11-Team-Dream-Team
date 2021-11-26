@@ -19,18 +19,10 @@
                     <p class="info__title">{{ song.title }}</p>
                 </div>
                 <div class="album__info info">
-                    <p class="info__name">{{ album.media }}</p><br>
+                    <audio src="\static\songs\{{ song.media }}" type="audio/mpeg" controls></audio>
                 </div>
             </div>
         {% endfor %}
-        <div class="main__albums album">
-            <div class="album__title">
-                <p class="info__title">Song_Title</p>
-            </div>
-            <div class="album__info info">
-                <p class="info__name">Song</p><br>
-            </div>
-        </div>
     </div>
 </main>
 {% endblock %}}
