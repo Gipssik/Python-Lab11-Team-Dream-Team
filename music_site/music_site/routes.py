@@ -7,6 +7,7 @@ from .models import User, Group, Album, Song, Role
 from .services import save_image, save_audio
 
 
+
 @app.route('/')
 @app.route('/home', methods=['GET'])
 def home():
@@ -100,6 +101,8 @@ def create_group():
             content=form.content.data,
         )
 
+        print(request)
+        print(request.files)
         print(form.img)
         print(form.img.data)
         if form.img.data:

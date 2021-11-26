@@ -30,10 +30,10 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    username = StringField("Ім\'я: ", validators=[
+    username = StringField("Ім\'я ", validators=[
                            DataRequired(), Length(min=3, max=50)])
-    password = PasswordField("Пароль: ", validators=[DataRequired()])
-    remember = BooleanField("Запам\'ятати: ")
+    password = PasswordField("Пароль ", validators=[DataRequired()])
+    remember = BooleanField("Запам\'ятати ")
     submit = SubmitField("Увійти")
 
 
@@ -41,7 +41,7 @@ class GroupForm(FlaskForm):
     name = StringField("Ім\'я групи: ", validators=[
                        DataRequired(), Length(min=1, max=20)])
     users = StringField("Ім\'я співака(ів): ", validators=[DataRequired()])
-    img = FileField("Фото групи: ", validators=[FileRequired()])
+    img = FileField("Фото групи: ", validators=[FileAllowed(['jpg', 'png'])])
     content = StringField("Опис групи: ", widget=TextArea(),
                           validators=[DataRequired()])
     submit = SubmitField("Добавити")
@@ -55,7 +55,7 @@ class GroupForm(FlaskForm):
 class AlbumForm(FlaskForm):
     label = StringField("Ім\'я альбому: ", validators=[
                         DataRequired(), Length(min=1, max=30)])
-    img = FileField("Обкладинка: ", validators=[DataRequired()])
+    img = FileField("Обкладинка: ", validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
     submit = SubmitField("Добавити")
 
     def validate_album(self, label):
@@ -67,10 +67,10 @@ class AlbumForm(FlaskForm):
 class EditAlbumForm(FlaskForm):
     label = StringField("Ім\'я альбому: ", validators=[
                         DataRequired(), Length(min=1, max=30)])
-    img = FileField("Обкладинка: ", validators=[DataRequired()])
+    img = FileField("Обкладинка: ", validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
     title = StringField("Назва пісні: ", validators=[
                         DataRequired(), Length(min=1, max=30)])
-    media = FileField("Пісня: ", validators=[DataRequired()])
+    media = FileField("Пісня: ", validators=[DataRequired(), FileAllowed(['mp3'])])
     submit = SubmitField("Добавити")
 
     def validate_album(self, label):
@@ -88,6 +88,6 @@ class UpdateUserInfoForm(FlaskForm):
     username = StringField("Ім\'я: ", validators=[
                            DataRequired(), Length(min=3, max=20)])
     email = StringField("Почта: ", validators=[DataRequired(), Email()])
-    image = FileField("Картинка: ", validators=[DataRequired()])
+    image = FileField("Картинка: ", validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
     musician = BooleanField("Я музикант: ")
     submit = SubmitField("Змінити")
