@@ -33,7 +33,6 @@ class LoginForm(FlaskForm):
     username = StringField("Ім\'я ", validators=[
                            DataRequired(), Length(min=3, max=50)])
     password = PasswordField("Пароль ", validators=[DataRequired()])
-    remember = BooleanField("Запам\'ятати ")
     submit = SubmitField("Увійти")
 
 
@@ -53,9 +52,9 @@ class GroupForm(FlaskForm):
 
 
 class AlbumForm(FlaskForm):
-    label = StringField("Ім\'я альбому: ", validators=[
+    label = StringField("Ім\'я альбому", validators=[
                         DataRequired(), Length(min=1, max=30)])
-    img = FileField("Обкладинка: ", validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
+    img = FileField("Обкладинка", validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField("Добавити")
 
     def validate_album(self, label):
@@ -65,23 +64,14 @@ class AlbumForm(FlaskForm):
 
 
 class EditAlbumForm(FlaskForm):
-    label = StringField("Ім\'я альбому: ", validators=[
-                        DataRequired(), Length(min=1, max=30)])
-    img = FileField("Обкладинка: ", validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
-    title = StringField("Назва пісні: ", validators=[
-                        DataRequired(), Length(min=1, max=30)])
-    media = FileField("Пісня: ", validators=[DataRequired(), FileAllowed(['mp3'])])
+    title = StringField("Назва пісні ", validators=[DataRequired(), Length(min=1, max=30)])
+    media = FileField("Пісня ", validators=[DataRequired(), FileAllowed(['mp3'])])
     submit = SubmitField("Добавити")
-
-    def validate_album(self, label):
-        label_album = Album.query.filter_by(lable=label.data).first()
-        if label_album:
-            raise ValidationError('Таке ім\'я вже існує')
 
     def validate_media(self, media):
         media_album = Song.query.filter_by(media=media.data).first()
         if media_album:
-            raise ValidationError('Ім\'я вже існує')
+            raise ValidationError('Така пісня вже існує, спробуйте ще раз')
 
 
 class UpdateUserInfoForm(FlaskForm):

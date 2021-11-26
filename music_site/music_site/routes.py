@@ -48,7 +48,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user, remember=form.remember.data)
+            login_user(user)
             return redirect(url_for('home'))
         flash('Невдача. Перевірте логін і пароль.', 'danger')
     return render_template('login.html', title='Логін', form=form)
@@ -186,5 +186,5 @@ def edit_album(album_id):
         db.session.commit()
         flash(f'Альбом "{album.label}" оновлено!', 'success')
 
-        return redirect(url_for('edit_group'))
+        return redirect(url_for('edit_album'))
     return render_template('edit.html', title='Редагування', form=form)
