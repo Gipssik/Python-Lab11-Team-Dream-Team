@@ -70,14 +70,7 @@ def account():
             current_user.image = save_image(form.image.data)
         current_user.username = form.username.data
         current_user.email = form.email.data
-
-        if form.musician.data:
-            current_user.role = Role.query\
-                .filter_by(title="Musician").first()
-        else:
-            current_user.role = Role.query\
-                .filter_by(title="User").first()
-
+        
         db.session.commit()
         flash('Ваш аккаунт оновлено!', 'success')
         return redirect(url_for('account'))

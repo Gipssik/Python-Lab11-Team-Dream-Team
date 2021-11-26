@@ -89,5 +89,4 @@ class UpdateUserInfoForm(FlaskForm):
                            DataRequired(), Length(min=3, max=20)])
     email = StringField("Почта: ", validators=[DataRequired(), Email()])
     image = FileField("Картинка: ", validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
-    musician = BooleanField("Я музикант: ")
     submit = SubmitField("Змінити")
