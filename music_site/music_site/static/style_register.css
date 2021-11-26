@@ -1,0 +1,30 @@
+.main {
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: white;
+    flex: 1 1 auto;
+}
+
+.main__container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.main__registration {
+    padding: 10px 0 0 0;
+    width: 100%;
+}
+.main__name__form {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2c353e;
+    margin-bottom: 20px;
+}
+
+.main__login {
+    margin-left: 10px;
+}
+.main__registration:last-child {
+    margin: 22px 0 40px 0;
+}

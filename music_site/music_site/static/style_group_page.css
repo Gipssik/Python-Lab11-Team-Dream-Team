@@ -1,0 +1,52 @@
+.main{
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: white;
+    flex: 1 1 auto;
+}
+.main__container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.main__albums {
+    display: flex;
+    border-radius: 3px;
+    background-color: #707273;
+    height: content-box;
+    width: 100%;
+    margin: 10px 0 10px 0;
+    padding: 5px;
+    color: #464648;
+}
+.main__albums:hover{
+    background-color: #208691;
+}
+.album{}
+.album__img{
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 3px;
+}
+.album__img img{
+    width: 100px;
+    height: 100px;
+}
+.album__info{
+    width: 100%;
+    background: white;
+    border-radius: 3px;
+    margin: 0 0 0 5px;
+    padding: 7px 7px 7px 15px;
+}
+/*.group__info > a{*/
+/*    line-height: 20px;*/
+/*    font-size: 15px;*/
+/*}*/
+.info__name{
+    font-weight: 600;
+}
+.info__users{}
+.info__context{}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<link href="../static/style_group_page.css" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+<main class="main">
+    <div class="main__container _container">
+        {% for album in albums %}
+            <a href="albums/{{ album.id }}">
+                <div class="main__albums album">
+                    <div class="album__img">
+                        <img src="../static/img/{{ album.image }}">
+                    </div>
+                    <div class="album__info info">
+                        <p class="info__name">{{ album.label }}</p><br>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+        <div class="main__albums album">
+            <div class="album__img" style="background: #2c353e">
+                <img src="../static/img/default.jpg">
+            </div>
+            <div class="album__info info">
+                <p class="info__name">Bordan</p><br>
+            </div>
+        </div>
+        <div class="main__albums album">
+            <div class="album__img" style="background: #2c353e">
+                <img src="../static/img/default.jpg">
+            </div>
+            <div class="album__info info">
+                <p class="info__name">Bordan</p><br>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<link href="../static/style_register.css" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+<main class="main">
+    <div class="main__container _container">
+        <div class="main__registration">
+	        {% for field, error in form.errors.items() %}
+		        <div class="messages_error">
+			        <a class="error">{{ ', '.join(error) }}</a>
+		        </div>
+	        {% endfor %}
+            <h1 class="main__name__form">Реєстрація</h1>
+            <a class="main__info__form">Будь ласка, заповніть цю форму, щоб створити обліковий запис</a>
+            <hr>
+            <form method="post" action="">
+                {{ form.hidden_tag() }}
+                <div>
+                    {{ form.username.label(class="form__label") }}<br>
+                    {{ form.username(class="form__text", placeholder="Введіть ім'я") }}
+                </div>
+                <div>
+                    {{ form.email.label(class="form__label") }}<br>
+                    {{ form.email(class="form__text", placeholder="Введіть почту")}}
+                </div>
+                <div>
+                    {{ form.password.label(class="form__label") }}<br>
+                    {{ form.password(class="form__text", placeholder="Введіть пароль") }}
+                </div>
+                <div>
+                    {{ form.confirm_password.label(class="form__label") }}<br>
+                    {{ form.confirm_password(class="form__text", placeholder="Повторіть пароль") }}
+                </div>
+                <div>
+                    {{ form.musician.label(class="form__label") }}
+                    {{ form.musician(class="form__checkbox") }}
+                </div>
+                <div>
+                    {{ form.submit(class="form__submit") }}
+                </div>
+            </form>
+            <hr>
+            <a>У вас є обліковий запис?  </a><a class="main__login" href="{{ url_for('login') }}">Увійти</a>
+        </div>
+    </div>
+</main>
+{% endblock %}
