@@ -167,24 +167,24 @@ def edit_album(album_id):
         return redirect(url_for('home'))
 
     if form.validate_on_submit():
+        print(123)
         if current_user not in album.group.users:
             flash('Ви не автор альбому', 'danger')
             return redirect(url_for('home'))
 
-        if form.img.data:
-            album.image = save_image(form.img.data)
+        print(form.title.data)
+        print(form.media.data)
 
-        album.label = form.label.data
-        if form.title.data and form.media.date:
+        if form.title.data and form.media.data:
             song = Song(
                 title=form.title.data,
                 album=album,
                 media=save_audio(form.media.data)
             )
             db.session.add(song)
-
-        db.session.commit()
+            db.session.commit()
+        
         flash(f'Альбом "{album.label}" оновлено!', 'success')
 
-        return redirect(url_for('edit_album'))
+        return redirect(url_for('edit_album', album_id=album_id))
     return render_template('edit.html', title='Редагування', form=form)
