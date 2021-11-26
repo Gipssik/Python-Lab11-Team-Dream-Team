@@ -73,5 +73,5 @@ class UpdateUserInfoForm(FlaskForm):
     username = StringField("Ім\'я: ", validators=[
                            DataRequired(), Length(min=3, max=20)])
     email = StringField("Почта: ", validators=[DataRequired(), Email()])
-    image = FileField("Картинка: ", validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
+    image = FileField("Картинка: ", validators=[FileRequired(), FileAllowed(['jpg', 'png'])])
     submit = SubmitField("Змінити")

@@ -75,12 +75,7 @@ def account():
         flash('Ваш аккаунт оновлено!', 'success')
         return redirect(url_for('account'))
 
-    elif request.method == 'GET':
-        form.username.data = current_user.username
-        form.email.data = current_user.email
-
-    image = url_for('static', filename=f'img/{current_user.image}')
-    return render_template('account.html', title='Account', image=image, form=form)
+    return render_template('account.html', title='Account', form=form)
 
 
 @app.route('/groups/create', methods=['GET', 'POST'])
