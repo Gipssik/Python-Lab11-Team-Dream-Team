@@ -101,6 +101,8 @@ def create_group():
             content=form.content.data,
         )
 
+        print(request)
+        print(request.files)
         print(form.img)
         print(form.img.data)
         if form.img.data:

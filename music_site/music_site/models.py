@@ -1,7 +1,14 @@
 from flask_login import UserMixin
+from sqlalchemy.orm import backref
 
 from . import db, login_manager
 from datetime import datetime
+
+
+user_group = db.Table('user_group', db.Model.metadata,
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('group_id', db.Integer, db.ForeignKey('group.id'))
+)
 
 
 @login_manager.user_loader
@@ -16,7 +23,8 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(64), unique=False, nullable=False)
     image = db.Column(db.String(64), unique=False, nullable=False, default='default.jpg')
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=False)
-    group_id = db.Column(db.Integer, db.ForeignKey('group.id'), nullable=True)
+
+    groups = db.relationship('Group', secondary=user_group, backref='users')
 
     def __repr__(self):
         return f'User("{self.username}", "{self.email}")'
@@ -59,7 +67,6 @@ class Group(db.Model):
     content = db.Column(db.Text, unique=False, nullable=True)
     data_created = db.Column(db.DateTime, unique=False, nullable=False, default=datetime.utcnow)
     image = db.Column(db.String(64), unique=False, nullable=False, default='default.jpg')
-    users = db.relationship('User', backref='group', lazy=True)
     albums = db.relationship('Album', backref='group', lazy=True)
 
     def __repr__(self):

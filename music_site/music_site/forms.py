@@ -41,7 +41,7 @@ class GroupForm(FlaskForm):
     name = StringField("Ім\'я групи: ", validators=[
                        DataRequired(), Length(min=1, max=20)])
     users = StringField("Ім\'я співака(ів): ", validators=[DataRequired()])
-    img = FileField("Фото групи: ", validators=[FileRequired()])
+    img = FileField("Фото групи: ", validators=[FileAllowed(['jpg', 'png'])])
     content = StringField("Опис групи: ", widget=TextArea(),
                           validators=[DataRequired()])
     submit = SubmitField("Добавити")

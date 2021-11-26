@@ -18,7 +18,7 @@
         <h1 class="title">Створення групи</h1>
         <p class="info">Будь ласка заповніть дану форму для створення музичного гурту</p>
         <hr>
-        <form action="" method="post">
+        <form method="post" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <div class="group__name">
                 {{form.name.label(class="form__label")}}
