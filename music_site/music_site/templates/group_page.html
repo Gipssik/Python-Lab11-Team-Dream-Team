@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 
 {% block style %}
-<link href="../static/style_group_page.css" rel="stylesheet">
+<link href="/static/style_group_page.css" rel="stylesheet">
+{% endblock %}
+
+{% block button %}
+<li class="menu__item">
+    <a href="{{ url_for('create_album', group_id = group.id) }}" class="menu__link">Створення альбому</a>
+</li>
 {% endblock %}
 
 {% block main %}
@@ -11,7 +17,7 @@
             <a href="albums/{{ album.id }}">
                 <div class="main__albums album">
                     <div class="album__img">
-                        <img src="../static/img/{{ album.image }}">
+                        <img src="/static/img/{{ album.image }}">
                     </div>
                     <div class="album__info info">
                         <p class="info__name">{{ album.label }}</p><br>

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block style %}
-<link href="../static/style_home.css" rel="stylesheet">
+<link href="/static/style_home.css" rel="stylesheet">
 {% endblock %}
 
 {% block main %}
@@ -11,7 +11,7 @@
             <a href="groups/{{ musician.id }}">
                 <div class="main__group group">
                     <div class="group__img">
-                        <img src="../static/img/{{ musician.image }}">
+                        <img src="/static/img/{{ musician.image }}">
                     </div>
                     <div class="group__info info">
                         <p class="info__name">{{ musician.name }}</p><br>
