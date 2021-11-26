@@ -3,7 +3,7 @@
 
 
 {% block style %}
-<link href="../static/style_create_album.css" rel="stylesheet">
+<link href="../static/style_create_group.css" rel="stylesheet">
 {% endblock %}
 
 
@@ -19,7 +19,7 @@
         <p class="info">Будь ласка заповніть дану форму для створення музичного гурту</p>
         <hr>
         <form action="" method="post">
-            {{form.hidden_tag() }}
+            {{ form.hidden_tag() }}
             <div class="group__name">
                 {{form.name.label(class="form__label")}}
                 {{form.name(class="form__text",placeholder="Введіть ім'я групи")}}
@@ -39,8 +39,8 @@
                 {{form.content.label(class="form")}}
                 {{form.content(class="form__textarea")}}
             </div>
-            <div class="form__submit">
-                {{form.submit(class="form__submit__btn")}}
+            <div class="submit">
+                {{form.submit(class="form__submit")}}
             </div>
         </form>
     </div>

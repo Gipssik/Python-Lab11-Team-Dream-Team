@@ -100,6 +100,7 @@ def create_group():
             content=form.content.data,
         )
 
+        print(form.img)
         print(form.img.data)
         if form.img.data:
             group.image = save_image(form.img.data)

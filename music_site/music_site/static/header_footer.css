@@ -1,6 +1,6 @@
 /*____________________ШАПКА_________________________________________________________*/
-.header{
-    background-color: #2C353E;
+.header {
+    background-color: #2c353e;
     width: 100%;
     left: 0;
     top: 0;
@@ -13,72 +13,114 @@
     padding: 0 15px;
     box-sizing: content-box;
 }
-.header__logo{
+.header__logo {
     font-size: 21px;
     color: #d9d4d4;
     font-weight: 600;
 }
-.header__menu{
+.header__menu {
     margin: 0 0 0 90px;
 }
-.menu{}
-.menu__list{
+.menu {
+}
+.menu__list {
     display: flex;
 }
-.menu__link{
+.menu__link {
     color: #cacece;
     font-weight: 400;
     line-height: 160%;
     padding: 0 0 10px 0;
 }
-.menu__item{
-
+.menu__item {
 }
-.menu__item:not(:last-child){
+.menu__item:not(:last-child) {
     margin: 0 25px 0 0;
 }
-.menu__link:hover{
-    color: #35AFBF;
+.menu__link:hover {
+    color: #35afbf;
     font-weight: 500;
-    border: solid #35AFBF;
+    border: solid #35afbf;
     border-width: 0 0 2px 0;
 }
 
-.logo__menu{
+.logo__menu {
     display: flex;
 }
 
-.button{
+.button {
     background: transparent;
     padding: 11px 15px;
     border-radius: 6px;
-    border: 3px solid #35AFBF;
+    border: 3px solid #35afbf;
     color: #bfc4c4;
 }
-.button:hover{
-    background: #35AFBF;
+.button:hover {
+    background: #35afbf;
     color: white;
     opacity: 0.7;
 }
-.header__buttons{
-
+.header__buttons {
 }
 /*____________________FOOTER_________________________________________________________*/
-.footer{
+.footer {
     width: 100%;
     left: 0;
     top: 0;
-    background-color: #2C353E;
+    background-color: #2c353e;
     height: 100%;
+    /* position sticky may cause some errors, if true, just delete it (Vladik =) ) */
+    position: sticky;
+    top: 100%;
 }
-.footer__container{
+.footer__container {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 15px;
 }
-.footer__copy{
-    padding: 15px 50px 15px 0;
+.footer__copy {
+    /* padding: 15px 50px 15px 0; */
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
 }
-.footer__img{}
-.footer__user{
+.footer__img img {
+    width: 20px;
+}
+.footer__user {
     color: white;
-    font-size: 12px;
+    font-size: 20px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .logo__menu {
+        align-items: center;
+        gap: 10px;
+    }
+    .header__menu {
+        margin: 0;
+    }
+    .header__container {
+        min-height: 60px;
+    }
+    .button {
+        padding: 6px 5px;
+        font-size: 11px;
+    }
+    .header__buttons {
+        display: flex;
+        gap: 5px;
+    }
+    .menu__link {
+        line-height: 100%;
+    }
+    .menu__list {
+        flex-wrap: wrap;
+    }
+    .footer__user {
+        font-size: 13px;
+    }
 }
