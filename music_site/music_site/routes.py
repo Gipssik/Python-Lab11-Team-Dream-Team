@@ -5,6 +5,7 @@ from . import app, bcrypt, db
 from .forms import RegistrationForm, LoginForm, GroupForm, AlbumForm
 from .models import User, Group, Album, Song
 
+
 @app.route('/')
 @app.route('/home', methods=['GET'])
 def home():
