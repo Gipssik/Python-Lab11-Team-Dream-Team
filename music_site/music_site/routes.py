@@ -185,6 +185,5 @@ def edit_album(album_id):
             db.session.commit()
         
         flash(f'Альбом "{album.label}" оновлено!', 'success')
-
-        return redirect(url_for('edit_album', album_id=album_id))
+        return redirect(url_for('album_page', album_id=album_id))
     return render_template('edit.html', title='Редагування', form=form)
