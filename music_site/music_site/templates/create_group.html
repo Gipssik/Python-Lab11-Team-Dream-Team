@@ -10,6 +10,7 @@
 {% block main %}
 <main class="main">
     <div class="main__inner">
+<<<<<<< HEAD
         {% for field, error in form.errors.items() %}
         <div class="messages_error">
             <a class="error">{{ ', '.join(error) }}</a>
@@ -24,6 +25,22 @@
         {% endfor %}
         {% endif %}
         {% endwith %}
+=======
+        {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="main__messages__{{ category }}">
+                            <a class="error">{{ message }}</a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+        {% endwith %}
+	    {% for field, error in form.errors.items() %}
+		    <div class="messages_error">
+			    <a class="error">{{ ', '.join(error) }}</a>
+		    </div>
+	    {% endfor %}
+>>>>>>> d49c6cd218bedc63e1e7574d20c112b818bef263
         <h1 class="title">Створення групи</h1>
         <p class="info">Будь ласка заповніть дану форму для створення музичного гурту</p>
         <hr>

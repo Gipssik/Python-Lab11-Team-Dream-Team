@@ -48,7 +48,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user, remember=form.remember.data)
+            login_user(user)
             return redirect(url_for('home'))
         flash('Невдача. Перевірте логін і пароль.', 'danger')
     return render_template('login.html', title='Логін', form=form)
@@ -70,14 +70,7 @@ def account():
             current_user.image = save_image(form.image.data)
         current_user.username = form.username.data
         current_user.email = form.email.data
-
-        if form.musician.data:
-            current_user.role = Role.query\
-                .filter_by(title="Musician").first()
-        else:
-            current_user.role = Role.query\
-                .filter_by(title="User").first()
-
+        
         db.session.commit()
         flash('Ваш аккаунт оновлено!', 'success')
         return redirect(url_for('account'))
@@ -101,13 +94,8 @@ def create_group():
             content=form.content.data,
         )
 
-        print(request)
-        print(request.files)
-        print(form.img)
-        print(form.img.data)
         if form.img.data:
             group.image = save_image(form.img.data)
-            print(group.image)
 
         for username in form.users.data.split(", "):
             user = User.query.filter_by(username=username).first()
@@ -198,5 +186,5 @@ def edit_album(album_id):
         db.session.commit()
         flash(f'Альбом "{album.label}" оновлено!', 'success')
 
-        return redirect(url_for('edit_group'))
+        return redirect(url_for('edit_album'))
     return render_template('edit.html', title='Редагування', form=form)
