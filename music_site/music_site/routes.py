@@ -66,11 +66,12 @@ def logout():
 def account():
     form = UpdateUserInfoForm(obj=current_user)
     if form.validate_on_submit():
-        if form.image.data:
+        if not isinstance(form.image.data, str):
             current_user.image = save_image(form.image.data)
         current_user.username = form.username.data
         current_user.email = form.email.data
         
+        db.session.merge(current_user)
         db.session.commit()
         flash('Ваш аккаунт оновлено!', 'success')
         return redirect(url_for('account'))
