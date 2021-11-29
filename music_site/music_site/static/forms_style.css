@@ -88,3 +88,10 @@ hr {
     border-radius: 6px;
     resize: none;
 }
+
+@media (max-width: 300px) {
+    .form__submit,
+    .form__text {
+        width: 220px;
+    }
+}
