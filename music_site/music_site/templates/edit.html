@@ -19,7 +19,7 @@
             {% endwith %}
             <h1 class="main__name__form">Додавання пісні</h1>
             <hr>
-            <form method="post" action="">
+            <form method="post" enctype="multipart/form-data">
 	            {{ form.hidden_tag() }}
                 <div>
                     {{ form.title.label(class="form__label") }}<br>

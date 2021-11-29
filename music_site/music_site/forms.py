@@ -65,18 +65,13 @@ class AlbumForm(FlaskForm):
 
 class EditAlbumForm(FlaskForm):
     title = StringField("Назва пісні ", validators=[DataRequired(), Length(min=1, max=30)])
-    media = FileField("Пісня ", validators=[DataRequired(), FileAllowed(['mp3'])])
+    media = FileField("Пісня ", validators=[FileAllowed(['mp3']), FileRequired()])
     submit = SubmitField("Добавити")
-
-    def validate_media(self, media):
-        media_album = Song.query.filter_by(media=media.data).first()
-        if media_album:
-            raise ValidationError('Така пісня вже існує, спробуйте ще раз')
 
 
 class UpdateUserInfoForm(FlaskForm):
     username = StringField("Ім\'я: ", validators=[
                            DataRequired(), Length(min=3, max=20)])
     email = StringField("Почта: ", validators=[DataRequired(), Email()])
-    image = FileField("Картинка: ", validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
+    image = FileField("Картинка: ", validators=[FileRequired(), FileAllowed(['jpg', 'png'])])
     submit = SubmitField("Змінити")
