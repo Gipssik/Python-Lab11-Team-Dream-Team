@@ -91,7 +91,7 @@
 }
 .footer__user {
     color: white;
-    font-size: 20px;
+    font-size: 13px;
     text-align: center;
 }
 
@@ -119,8 +119,5 @@
     }
     .menu__list {
         flex-wrap: wrap;
-    }
-    .footer__user {
-        font-size: 13px;
     }
 }

@@ -1,35 +1,31 @@
-{% extends 'base.html' %}
-
-{% block main %}
+{% extends 'base.html' %} {% block main %}
 <main class="main">
-    <div class="container">
-        <div class="main__inner">
-            <img class="user__img" src="{{image}}" alt="user">
-            <div class="user__content">
-                <p class="user__name"> {{form.username.data}}</p>
-                <p class="user__email"> {{form.email.data}}</p>
-            </div>
-        </div>
-
-        <form method="post" enctype="multipart/form-data">
-            <div class="form__username">
-                {{form.username.label(class="form__label")}}
-                {{form.username(class="form__text")}}
-            </div>
-            <div class="form__email">
-                {{form.email.label(class="form__label")}}
-                {{form.email(class="form__text")}}
-            </div>
-            <div class="form__image">
-                {{form.image.label(class="form__label")}}
-                <label class="file__upload">
-                    {{form.image(class="form__img__btn")}}
-                </label>
-            </div>
-            <div class="submit">
-                {{form.submit(class="form__submit")}}
-            </div>
-        </form>
+  <div class="container">
+    <div class="main__inner">
+      <img class="user__img" src="{{image}}" alt="user" />
+      <div class="user__content">
+        <p class="user__name">{{form.username.data}}</p>
+        <p class="user__email">{{form.email.data}}</p>
+      </div>
     </div>
+
+    <form method="post" enctype="multipart/form-data">
+      <div class="form__username">
+        {{form.username.label(class="form__label")}}
+        {{form.username(class="form__text")}}
+      </div>
+      <div class="form__email">
+        {{form.email.label(class="form__label")}}
+        {{form.email(class="form__text")}}
+      </div>
+      <div class="form__image">
+        {{form.image.label(class="form__label")}}
+        <label class="file__upload">
+          {{form.image(class="form__img__btn")}}
+        </label>
+      </div>
+      <div class="submit">{{form.submit(class="form__submit")}}</div>
+    </form>
+  </div>
 </main>
 {% endblock %}
