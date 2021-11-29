@@ -1,8 +1,10 @@
-{% extends 'base.html' %} {% block main %}
+{% extends 'base.html' %} {% block style %}
+<link rel="stylesheet" href="../static/style_account.css" />
+{%endblock%} {% block main %}
 <main class="main">
   <div class="container">
     <div class="main__inner">
-      <img class="user__img" src="{{image}}" alt="user" />
+      <div class="user__img" style="background-image: url({{image}});"></div>
       <div class="user__content">
         <p class="user__name">{{form.username.data}}</p>
         <p class="user__email">{{form.email.data}}</p>
@@ -10,6 +12,7 @@
     </div>
 
     <form method="post" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
       <div class="form__username">
         {{form.username.label(class="form__label")}}
         {{form.username(class="form__text")}}

@@ -1,0 +1,44 @@
+.main {
+}
+.container {
+    max-width: 1046px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.main__inner {
+    width: 630px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    padding: 10px 0;
+}
+.user__img {
+    height: 150px;
+    width: 150px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 1px solid black;
+}
+.user__content {
+}
+.user__name {
+}
+.user__email {
+}
+.form__username {
+}
+.form__email {
+}
+.form__image {
+}
+.file__upload {
+}
+.submit {
+}
+form {
+}
