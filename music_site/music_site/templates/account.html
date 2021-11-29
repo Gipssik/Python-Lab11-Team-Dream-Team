@@ -3,16 +3,29 @@
 {%endblock%} {% block main %}
 <main class="main">
     <div class="container">
-        <div class="main__inner">
-            <div class="user__img" style="background-image: url({{image}});"></div>
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+            messages %} {% for category, message in messages %}
+            <div class="main__messages__{{ category }}">
+                <a class="error">{{ message }}</a>
+            </div>
+            {% endfor %} {% endif %} {% endwith %} {% for field, error in
+                form.errors.items() %}
+                <div class="messages_error">
+                    <a class="error">{{ ', '.join(error) }}</a>
+                </div>
+                {% endfor %}
+                <div class="main__inner">
+            <img class="user__img" src="{{image}}" alt="user image">
             <div class="user__content">
                 <p class="user__name"> {{form.username.data}}</p>
-                <p class="user__email"> {{form.email.data}}</p>
+                <p class="user__email">Email: {{form.email.data}}</p>
             </div>
         </div>
 
+        <hr>
         <form method="post" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
+            <h2 class="change__info">Зміна інформації</h2>
             <div class="form__username">
                 {{form.username.label(class="form__label")}}
                 {{form.username(class="form__text")}}
