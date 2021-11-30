@@ -114,7 +114,7 @@ def group_page(group_id):
     return render_template('group_page.html', title=group.name, group=group)
 
 
-@app.route('/groups/<int:group_id>/delete', methods=['POST'])
+@app.route('/groups/<int:group_id>/delete', methods=['GET'])
 @login_required
 def group_delete(group_id):
     group = Group.query.get_or_404(group_id)
@@ -196,7 +196,8 @@ def album_delete(album_id):
     flash('Ви не є учасником групи', 'danger')
     return redirect(url_for('album_page', album_page=album_id))
 
-@app.route('/songs/<int:song_id>/delete', methods=['POST'])
+
+@app.route('/songs/<int:song_id>/delete', methods=['GET'])
 @login_required
 def song_delete(song_id):
     song = Song.query.get_or_404(song_id)
@@ -206,4 +207,4 @@ def song_delete(song_id):
         flash('Альбому успішно видалено', 'success')
         return redirect(url_for('album_page', album_id=song.album_id))
     flash('Ви не є учасником групи', 'danger')
-    return redirect(url_for('album_page', album_page=song.album_id))
+    return redirect(url_for('album_page', album_id=song.album_id))
