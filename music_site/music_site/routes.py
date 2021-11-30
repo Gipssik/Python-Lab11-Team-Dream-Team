@@ -167,9 +167,6 @@ def edit_album(album_id):
             flash('Ви не автор альбому', 'danger')
             return redirect(url_for('home'))
 
-        print(form.title.data)
-        print(form.media.data)
-
         if form.title.data and form.media.data:
             song = Song(
                 title=form.title.data,
