@@ -195,7 +195,9 @@ def edit_album(album_id):
 def album_delete(album_id):
     album = Album.query.get_or_404(album_id)
     if current_user in album.group.users:
+        db.session.query(Song).filter_by(album_id=album.id).delete()
         db.session.delete(album)
+        db.session.flush()
         db.session.commit()
         flash('Альбому успішно видалено', 'success')
         return redirect(url_for('group_page', group_id=album.group_id))
