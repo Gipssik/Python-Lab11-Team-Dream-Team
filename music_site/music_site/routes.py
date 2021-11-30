@@ -116,12 +116,18 @@ def group_page(group_id):
     return render_template('group_page.html', title=group.name, group=group)
 
 
-@app.route('/groups/<int:group_id>/delete', methods=['POST'])
+@app.route('/groups/<int:group_id>/delete', methods=['GET'])
 @login_required
 def group_delete(group_id):
     group = Group.query.get_or_404(group_id)
     if current_user in group.users:
+        albums = db.session.query(Album).filter(Album.group_id == group.id).all()
+        for album in albums:
+            db.session.query(Song).filter_by(album_id=album.id).delete()
+            db.session.delete(album)
+
         db.session.delete(group)
+        db.session.flush()
         db.session.commit()
         flash('Група успішно видалена', 'success')
         return redirect(url_for('home'))
@@ -186,7 +192,7 @@ def edit_album(album_id):
     return render_template('edit.html', title='Редагування', form=form)
 
 
-@app.route('/albums/<int:album_id>/delete', methods=['POST'])
+@app.route('/albums/<int:album_id>/delete', methods=['GET'])
 @login_required
 def album_delete(album_id):
     album = Album.query.get_or_404(album_id)
@@ -199,7 +205,7 @@ def album_delete(album_id):
     return redirect(url_for('album_page', album_page=album_id))
 
 
-@app.route('/songs/<int:song_id>/delete', methods=['POST'])
+@app.route('/songs/<int:song_id>/delete', methods=['GET'])
 @login_required
 def song_delete(song_id):
     song = Song.query.get_or_404(song_id)
@@ -209,4 +215,4 @@ def song_delete(song_id):
         flash('Альбому успішно видалено', 'success')
         return redirect(url_for('album_page', album_id=song.album_id))
     flash('Ви не є учасником групи', 'danger')
-    return redirect(url_for('album_page', album_page=song.album_id))
+    return redirect(url_for('album_page', album_id=song.album_id))
