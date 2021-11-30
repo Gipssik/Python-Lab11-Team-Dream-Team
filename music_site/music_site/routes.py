@@ -197,3 +197,15 @@ def album_delete(album_id):
         return redirect(url_for('group_page', group_id=album.group_id))
     flash('Ви не є учасником групи', 'danger')
     return redirect(url_for('album_page', album_page=album_id))
+
+@app.route('/songs/<int:song_id>/delete', methods=['POST'])
+@login_required
+def song_delete(song_id):
+    song = Song.query.get_or_404(song_id)
+    if current_user in song.album.group.users:
+        db.session.delete(song)
+        db.session.commit()
+        flash('Альбому успішно видалено', 'success')
+        return redirect(url_for('album_page', album_id=song.album_id))
+    flash('Ви не є учасником групи', 'danger')
+    return redirect(url_for('album_page', album_page=song.album_id))
