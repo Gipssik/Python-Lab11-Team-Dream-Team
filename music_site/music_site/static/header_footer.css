@@ -14,7 +14,7 @@
     box-sizing: content-box;
 }
 .header__logo {
-    font-size: 21px;
+    font-size: 45px;
     color: #d9d4d4;
     font-weight: 600;
 }
@@ -46,6 +46,7 @@
 
 .logo__menu {
     display: flex;
+    align-items: center;
 }
 
 .button {
@@ -68,7 +69,6 @@
     left: 0;
     top: 0;
     background-color: #2c353e;
-    height: 100%;
     /* position sticky may cause some errors, if true, just delete it (Vladik =) ) */
     position: sticky;
     top: 100%;
@@ -80,7 +80,6 @@
     padding: 20px 15px;
 }
 .footer__copy {
-    /* padding: 15px 50px 15px 0; */
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -91,7 +90,7 @@
 }
 .footer__user {
     color: white;
-    font-size: 20px;
+    font-size: 13px;
     text-align: center;
 }
 
@@ -120,7 +119,19 @@
     .menu__list {
         flex-wrap: wrap;
     }
+    .header__logo {
+        font-size: 20px;
+    }
+    .menu__link {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 300px) {
     .footer__user {
-        font-size: 13px;
+        font-size: 10px;
+    }
+    .footer__container {
+        padding: 10px;
     }
 }

@@ -64,8 +64,10 @@ class AlbumForm(FlaskForm):
 
 
 class EditAlbumForm(FlaskForm):
-    title = StringField("Назва пісні ", validators=[DataRequired(), Length(min=1, max=30)])
-    media = FileField("Пісня ", validators=[FileAllowed(['mp3']), FileRequired()])
+    title = StringField("Назва пісні ", validators=[
+                        DataRequired(), Length(min=1, max=30)])
+    media = FileField("Пісня ", validators=[
+                      FileAllowed(['mp3']), FileRequired()])
     submit = SubmitField("Добавити")
 
 
@@ -73,5 +75,5 @@ class UpdateUserInfoForm(FlaskForm):
     username = StringField("Ім\'я: ", validators=[
                            DataRequired(), Length(min=3, max=20)])
     email = StringField("Почта: ", validators=[DataRequired(), Email()])
-    image = FileField("Картинка: ", validators=[FileRequired(), FileAllowed(['jpg', 'png'])])
+    image = FileField("Картинка: ", validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField("Змінити")

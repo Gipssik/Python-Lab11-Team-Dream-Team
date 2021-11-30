@@ -5,6 +5,7 @@
 .main__inner {
     display: flex;
     flex-direction: column;
+    width: 830px;
     gap: 10px;
     padding: 10px;
 }
@@ -60,5 +61,8 @@ form {
     }
     .form__text {
         width: 100% !important;
+    }
+    .main__inner {
+        width: auto;
     }
 }
