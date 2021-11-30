@@ -68,8 +68,6 @@ def account():
     if form.validate_on_submit():
         if not isinstance(form.image.data, str):
             current_user.image = save_image(form.image.data)
-            print('saved')
-        print(current_user.image)
         current_user.username = form.username.data
         current_user.email = form.email.data
         
