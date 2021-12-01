@@ -62,6 +62,9 @@
     opacity: 0.7;
 }
 .header__buttons {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
 }
 /*____________________FOOTER_________________________________________________________*/
 .footer {
@@ -124,6 +127,9 @@
     }
     .menu__link {
         font-size: 10px;
+    }
+    .header__buttons {
+        flex-wrap: nowrap;
     }
 }
 
