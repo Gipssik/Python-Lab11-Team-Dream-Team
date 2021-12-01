@@ -5,14 +5,26 @@
 {% endblock %}
 
 {% block button %}
-<li class="menu__item">
-    <a href="{{ url_for('create_album', group_id = group.id) }}" class="menu__link">Створення альбому</a>
-</li>
+    <li class="menu__item">
+        <a href="{{ url_for('create_album', group_id = group.id) }}" class="menu__link">Створення альбому</a>
+    </li>
+    <li class="menu__item">
+        <a href="{{ url_for('group_delete', group_id = group.id) }}" class="menu__link">Видалення групи</a>
+    </li>
 {% endblock %}
 
 {% block main %}
 <main class="main">
     <div class="main__container _container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="main__messages__{{ category }}">
+                            <a class="error">{{ message }}</a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+        {% endwith %}
         {% for album in group.albums %}
             <a href="../albums/{{ album.id }}">
                 <div class="main__albums album">
