@@ -187,7 +187,7 @@ def edit_album(album_id):
         
         flash(f'Альбом "{album.label}" оновлено!', 'success')
         return redirect(url_for('album_page', album_id=album_id))
-    return render_template('edit.html', title='Редагування', form=form)
+    return render_template('edit_music.html', title='Редагування', form=form)
 
 
 @app.route('/albums/<int:album_id>/delete', methods=['GET'])

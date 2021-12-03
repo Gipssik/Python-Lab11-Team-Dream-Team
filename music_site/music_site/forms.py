@@ -71,6 +71,12 @@ class EditAlbumForm(FlaskForm):
     submit = SubmitField("Добавити")
 
 
+class UpdateAlbumInfoForm(FlaskForm):
+    name = StringField("Назва альбому ", validators=[Length(min=1, max=30)])
+    image = FileField("Фото альбому ", validators=[
+        FileAllowed(['jpg', 'png'])])
+
+
 class UpdateUserInfoForm(FlaskForm):
     username = StringField("Ім\'я: ", validators=[
                            DataRequired(), Length(min=3, max=20)])
