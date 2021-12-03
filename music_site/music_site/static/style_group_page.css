@@ -132,14 +132,16 @@
 }
 .info {
 }
+
 .info__name {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-left: 13px;
     align-items: center;
     font-size: 34px;
     width: 100%;
+    color: #000;
 }
-
 @media (max-width: 600px) {
     .group__info {
         flex-wrap: wrap;

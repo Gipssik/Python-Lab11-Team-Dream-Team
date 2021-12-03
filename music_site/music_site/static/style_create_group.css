@@ -66,3 +66,9 @@ form {
         width: auto;
     }
 }
+
+@media screen and (max-width: 369px) {
+    .file__upload {
+        width: 96px;
+    }
+}
