@@ -164,6 +164,7 @@ def album_page(album_id):
     album = Album.query.get_or_404(album_id)
     return render_template('album_page.html', title=album.label, album=album)
 
+
 @app.route('/albums/<int:album_id>/edit', methods=['GET', 'POST'])
 @login_required
 def edit_album(album_id):
