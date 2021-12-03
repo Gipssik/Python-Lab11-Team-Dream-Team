@@ -178,13 +178,13 @@ def edit_album(album_id):
         if form.name.data:
             album.label = form.name.data
         if form.image.data:
-            album.image = form.image.data
+            album.image = save_image(form.image.data)
 
         db.session.commit()
 
         flash(f'Альбом "{album.label}" оновлено!', 'success')
         return redirect(url_for('album_page', album_id=album_id))
-    return render_template('edit_music.html', title='Редагування', form=form)
+    return render_template('edit_album.html', title='Редагування', form=form)
 
 
 @app.route('/albums/<int:album_id>/add-song', methods=['GET', 'POST'])
