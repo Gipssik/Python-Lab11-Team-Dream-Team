@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, request
 from flask_login import login_user, logout_user, login_required, current_user
 
 from . import app, bcrypt, db
-from .forms import RegistrationForm, LoginForm, GroupForm, AlbumForm, EditAlbumForm, UpdateUserInfoForm
+from .forms import RegistrationForm, LoginForm, GroupForm, AlbumForm, EditAlbumForm, UpdateUserInfoForm, UpdateAlbumInfoForm
 from .models import User, Group, Album, Song, Role
 from .services import save_image, save_audio
 
@@ -164,10 +164,32 @@ def album_page(album_id):
     album = Album.query.get_or_404(album_id)
     return render_template('album_page.html', title=album.label, album=album)
 
-
 @app.route('/albums/<int:album_id>/edit', methods=['GET', 'POST'])
 @login_required
 def edit_album(album_id):
+    form = UpdateAlbumInfoForm()
+    album = Album.query.get_or_404(album_id)
+
+    if form.validate_on_submit():
+        if current_user not in album.group.users:
+            flash('Ви не є учасником групи', 'danger')
+            return redirect(url_for('album_page', album_id=album_id))
+
+        if form.name.data:
+            album.label = form.name.data
+        if form.image.data:
+            album.image = form.image.data
+
+        db.session.commit()
+
+        flash(f'Альбом "{album.label}" оновлено!', 'success')
+        return redirect(url_for('album_page', album_id=album_id))
+    return render_template('edit_music.html', title='Редагування', form=form)
+
+
+@app.route('/albums/<int:album_id>/add-song', methods=['GET', 'POST'])
+@login_required
+def add_song(album_id):
     form = EditAlbumForm()
     album = Album.query.get_or_404(album_id)
 
