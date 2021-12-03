@@ -1,12 +1,12 @@
 /*____________________MAIN_________________________________________________________*/
-.main{
+.main {
     width: 100%;
     left: 0;
     top: 0;
     background-color: white;
     flex: 1 1 auto;
 }
-.main__container{
+.main__container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -21,21 +21,27 @@
     padding: 5px;
     color: #464648;
 }
-.main__group:hover{
+.main__group:hover {
     background-color: #208691;
 }
-.group{}
-.group__img{
+.groups__title {
+    padding-top: 5px;
+    font-size: 35px;
+    margin: 0 auto;
+    font-weight: bold;
+    justify-self: center;
+    color: black;
+}
+.group__img {
     width: 100px;
     height: 100px;
-    background: white;
     border-radius: 3px;
 }
-.group__img img{
+.group__img img {
     width: 100px;
     height: 100px;
 }
-.group__info{
+.group__info {
     width: 400px;
     background: white;
     border-radius: 3px;
@@ -46,8 +52,71 @@
 /*    line-height: 20px;*/
 /*    font-size: 15px;*/
 /*}*/
-.info__name{
+.info__name {
     font-weight: 600;
 }
-.info__users{}
-.info__context{}
+.info__users {
+}
+.info__context {
+}
+
+@media screen and (max-width: 1011px) {
+    .main__container {
+        padding: 0 10px;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 510px) {
+    .main__group {
+        align-items: stretch;
+    }
+    .info__users,
+    .info__context {
+        font-size: 4vw;
+    }
+    .info__name {
+        font-size: 14px;
+    }
+    .group__info {
+        width: 100%;
+        padding: 4px;
+    }
+    .main__group {
+        width: 100%;
+        margin: 0;
+    }
+    .main__container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .group__img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .group__img img {
+        width: 28vw;
+        height: 28vw;
+    }
+    .groups__title {
+        font-size: 10vw;
+    }
+    hr {
+        margin: 4px 0;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    .main__container {
+        padding: 0 0 4px 0;
+    }
+    .main__group {
+        border-radius: 0;
+    }
+}
