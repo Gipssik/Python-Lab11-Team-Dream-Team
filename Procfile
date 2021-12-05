@@ -1,1 +1,1 @@
-worker: python setup.py
+web: gunicorn music_site:app

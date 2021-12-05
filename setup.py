@@ -14,4 +14,4 @@ if __name__ == '__main__':
         db.session.add(a)
         db.session.commit()
 
-    app.run(debug=True, port=67854)
+    app.run(debug=False, port=67854)
