@@ -1,0 +1,1 @@
+worker: python music_site.setup.py
