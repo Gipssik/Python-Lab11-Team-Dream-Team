@@ -17,6 +17,7 @@
     font-size: 45px;
     color: #d9d4d4;
     font-weight: 600;
+    font-family: 'Josefin Sans', sans-serif;
 }
 .header__menu {
     margin: 0 0 0 90px;
@@ -29,17 +30,18 @@
 }
 .menu__link {
     color: #cacece;
-    font-weight: 400;
     line-height: 160%;
     padding: 0 0 10px 0;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 18px;
+    transition: .3s ease;
 }
 .menu__item {
 }
 .menu__link:hover {
     color: #35afbf;
-    font-weight: 500;
-    border: solid #35afbf;
-    border-width: 0 0 2px 0;
+    box-shadow: 0px 2px 0px #35afbf;
+    transition: .3s ease;
 }
 
 .logo__menu {
@@ -53,11 +55,14 @@
     border-radius: 6px;
     border: 3px solid #35afbf;
     color: #bfc4c4;
+    font-family: 'Exo 2', sans-serif;
+    transition: .3s ease;
 }
 .button:hover {
     background: #35afbf;
     color: white;
     opacity: 0.7;
+    transition: .3s ease;
 }
 .header__buttons {
     display: flex;
@@ -92,8 +97,14 @@
 }
 .footer__user {
     color: white;
-    font-size: 13px;
+    font-size: 15px;
     text-align: center;
+    font-family: 'Exo 2', sans-serif;
+    transition: .3s ease;
+}
+.footer__user:hover{
+    opacity: 0.7;
+    transition: .3s ease;
 }
 
 @media (max-width: 600px) {

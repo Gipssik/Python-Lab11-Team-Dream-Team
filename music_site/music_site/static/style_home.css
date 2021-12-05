@@ -20,9 +20,11 @@
     margin: 10px 0 10px 0;
     padding: 5px;
     color: #464648;
+    transition: .3s ease;
 }
 .main__group:hover {
     background-color: #208691;
+    transition: .3s ease;
 }
 .groups__title {
     padding-top: 5px;
@@ -54,10 +56,16 @@
 /*}*/
 .info__name {
     font-weight: 600;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
 }
 .info__users {
+    font-weight: 400;
+    font-family: 'Fira Sans', sans-serif;
 }
 .info__context {
+    font-weight: 200;
+    font-family: 'Fira Sans', sans-serif;
 }
 
 @media screen and (max-width: 1011px) {

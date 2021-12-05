@@ -16,6 +16,12 @@
     color: #2c353e;
 }
 
+
+.info{
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+}
+
 form {
     display: flex;
     flex-direction: column;

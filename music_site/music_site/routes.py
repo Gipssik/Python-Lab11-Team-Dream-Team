@@ -118,7 +118,8 @@ def group_page(group_id):
 @login_required
 def group_edit(group_id):
     group = Group.query.get_or_404(group_id)
-    form = UpdateGroupInfoForm(obj=group)
+    users = ', '.join([user.username for user in group.users])
+    form = UpdateGroupInfoForm(name=group.name, content=group.content, users=users)
 
     if current_user not in group.users:
         flash('Ви не є учасником групи', 'danger')
@@ -136,8 +137,14 @@ def group_edit(group_id):
                 return redirect(url_for('group_page', group_id=group_id))
 
             members.append(user)
-
         group.users = members
+
+        print(form.image.data)
+        if form.image.data:
+            group.image = save_image(form.image.data)
+
+        if form.content.data:
+            group.content = form.content.data
 
         db.session.commit()
 

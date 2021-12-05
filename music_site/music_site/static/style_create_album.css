@@ -29,7 +29,9 @@
 .info__title{
     margin: 0 0 0 20px;
     color: #2c353e;
+    font-size: 19px;
     font-weight: 600;
+    font-family: 'Exo 2', sans-serif;
 }
 
 .main__song{

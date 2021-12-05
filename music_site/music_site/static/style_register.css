@@ -55,8 +55,14 @@
     margin: 22px 0 22px 0;
     width: 50%;
 }
+.account__doesnt__exists, .account__exists{
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 400;
+}
 .main__login{
     margin-left: 10px;
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 400;
 }
 .main__registration:last-child {
     margin: 22px 0 40px 0;
