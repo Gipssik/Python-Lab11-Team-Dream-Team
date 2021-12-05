@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, request
 from flask_login import login_user, logout_user, login_required, current_user
 
 from . import app, bcrypt, db
-from .forms import RegistrationForm, LoginForm, GroupForm, AlbumForm, EditAlbumForm, UpdateUserInfoForm, UpdateAlbumInfoForm
+from .forms import RegistrationForm, LoginForm, GroupForm, AlbumForm, EditAlbumForm, UpdateGroupInfoForm, UpdateUserInfoForm, UpdateAlbumInfoForm
 from .models import User, Group, Album, Song, Role
 from .services import save_image, save_audio
 
@@ -114,6 +114,38 @@ def group_page(group_id):
     return render_template('group_page.html', title=group.name, group=group)
 
 
+@app.route('/groups/<int:group_id>/edit', methods=['GET', 'POST'])
+@login_required
+def group_edit(group_id):
+    group = Group.query.get_or_404(group_id)
+    form = UpdateGroupInfoForm(obj=group)
+
+    if current_user not in group.users:
+        flash('Ви не є учасником групи', 'danger')
+        return redirect(url_for('group_page', group_id=group_id))
+
+    if form.validate_on_submit():
+        if form.name.data:
+            group.name = form.name.data
+
+        members = []
+        for username in form.users.data.split(", "):
+            user = User.query.filter_by(username=username).first()
+            if not user:
+                flash('Користувача не знайдено', 'danger')
+                return redirect(url_for('group_page', group_id=group_id))
+
+            members.append(user)
+
+        group.users = members
+
+        db.session.commit()
+
+        flash(f'Групу "{group.name}" оновлено!', 'success')
+        return redirect(url_for('group_page', group_id=group_id))
+    return render_template('edit_album.html', title='Редагування', form=form)
+
+
 @app.route('/groups/<int:group_id>/delete', methods=['GET'])
 @login_required
 def group_delete(group_id):
@@ -169,7 +201,6 @@ def album_page(album_id):
 @login_required
 def edit_album(album_id):
     album = Album.query.get_or_404(album_id)
-    print(album.__dict__)
     form = UpdateAlbumInfoForm(obj=album)
 
     if current_user not in album.group.users:
