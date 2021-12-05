@@ -1,7 +1,7 @@
 from music_site import app, db
 from music_site.models import User, Role
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     db.create_all()
     if not User.query.all():
         r_a = Role(title='Admin')
@@ -13,5 +13,4 @@ if __name__ == '__main__':
         db.session.add(r_u)
         db.session.add(a)
         db.session.commit()
-
-    app.run(debug=False, port=67854)
+    app.run()
