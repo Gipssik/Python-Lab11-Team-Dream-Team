@@ -1,1 +1,1 @@
-worker: python music_site.setup.py
+worker: python setup.py
