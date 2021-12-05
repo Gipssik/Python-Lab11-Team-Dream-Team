@@ -36,23 +36,25 @@
         <p class="group__text">{{group.content}}</p>
       </div>
     </div>
-    <hr />
-    <h1 class="albums__title">Альбоми</h1>
-    <ul class="albums__list">
-      {% for album in group.albums %}
-      <li class="albums__item">
-        <a class="album__link" href="../albums/{{ album.id }}">
-          <div class="main__albums album">
-            <div
-              class="album__img"
-              style="background-image:url(/static/img/{{album.image}})"
-            ></div>
+    {% if group.albums %}
+      <hr />
+      <h1 class="albums__title">Альбоми</h1>
+      <ul class="albums__list">
+        {% for album in group.albums %}
+        <li class="albums__item">
+          <a class="album__link" href="../albums/{{ album.id }}">
+            <div class="main__albums album">
+              <div
+                class="album__img"
+                style="background-image:url(/static/img/{{album.image}})"
+              ></div>
 
-            <p class="info__name">{{ album.label }}</p>
-          </div>
-        </a>
-      </li>
-      {% endfor %}
+              <p class="info__name">{{ album.label }}</p>
+            </div>
+          </a>
+        </li>
+        {% endfor %}
+      {% endif %}
     </ul>
   </div>
 </main>
