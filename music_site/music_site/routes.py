@@ -143,7 +143,7 @@ def group_edit(group_id):
 
         flash(f'Групу "{group.name}" оновлено!', 'success')
         return redirect(url_for('group_page', group_id=group_id))
-    return render_template('edit_album.html', title='Редагування', form=form)
+    return render_template('edit_group.html', title='Редагування', form=form)
 
 
 @app.route('/groups/<int:group_id>/delete', methods=['GET'])

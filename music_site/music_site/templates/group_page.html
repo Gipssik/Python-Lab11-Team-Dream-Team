@@ -16,6 +16,9 @@
         >Видалення групи</a
       >
     </li>
+      <li class="menu__item">
+          <a href="{{ url_for('group_edit',  group_id = group.id) }}" class="menu__link">Редагування групи</a>
+      </li>
   {% endif %}
 {% endblock %} {% block main %}
 <main class="main">
