@@ -1,0 +1,80 @@
+.main {
+    margin: 0 auto;
+    max-width: 1046px;
+}
+.main__inner {
+    display: flex;
+    flex-direction: column;
+    width: 830px;
+    gap: 10px;
+    padding: 10px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2c353e;
+}
+
+
+.info{
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 25px;
+    padding: 0 60px 15px 0;
+}
+
+.group__name,
+.members,
+.group__img,
+.description,
+.form__submit {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form__img__btn {
+    display: none;
+}
+
+.file__upload {
+    cursor: pointer;
+    width: 140px;
+    height: 50px;
+    background: url(../static/img/1297064598_1296921710_001.gif);
+    background-size: cover;
+    border: 1px solid #2c353e;
+    position: relative;
+    transform: translateX(150%);
+}
+.file__upload::before {
+    content: "Тицніть на кота щоб завантажити фото =)";
+    font-size: 14px;
+    position: absolute;
+    transform: translateX(-100%);
+}
+
+@media (max-width: 600px) {
+    .form__textarea {
+        width: 100% !important;
+    }
+    .form__text {
+        width: 100% !important;
+    }
+    .main__inner {
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 369px) {
+    .file__upload {
+        width: 96px;
+    }
+}
