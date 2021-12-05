@@ -171,11 +171,11 @@ def edit_album(album_id):
     form = UpdateAlbumInfoForm()
     album = Album.query.get_or_404(album_id)
 
-    if form.validate_on_submit():
-        if current_user not in album.group.users:
-            flash('Ви не є учасником групи', 'danger')
-            return redirect(url_for('album_page', album_id=album_id))
+    if current_user not in album.group.users:
+        flash('Ви не є учасником групи', 'danger')
+        return redirect(url_for('album_page', album_id=album_id))
 
+    if form.validate_on_submit():
         if form.name.data:
             album.label = form.name.data
         if form.image.data:
@@ -194,11 +194,11 @@ def add_song(album_id):
     form = EditAlbumForm()
     album = Album.query.get_or_404(album_id)
 
-    if form.validate_on_submit():
-        if current_user not in album.group.users:
-            flash('Ви не є учасником групи', 'danger')
-            return redirect(url_for('album_page', album_id=album_id))
+    if current_user not in album.group.users:
+        flash('Ви не є учасником групи', 'danger')
+        return redirect(url_for('album_page', album_id=album_id))
 
+    if form.validate_on_submit():
         if form.title.data and form.media.data:
             song = Song(
                 title=form.title.data,
@@ -225,7 +225,7 @@ def album_delete(album_id):
         flash('Альбому успішно видалено', 'success')
         return redirect(url_for('group_page', group_id=album.group_id))
     flash('Ви не є учасником групи', 'danger')
-    return redirect(url_for('album_page', album_page=album_id))
+    return redirect(url_for('album_page', album_id=album_id))
 
 
 @app.route('/songs/<int:song_id>/delete', methods=['GET'])
