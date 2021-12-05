@@ -1,6 +1,6 @@
 /*____________________ШАПКА_________________________________________________________*/
 .header {
-    background-color: #2c353e;
+    background-color: #212121;
     width: 100%;
     left: 0;
     top: 0;
@@ -70,7 +70,7 @@
     width: 100%;
     left: 0;
     top: 0;
-    background-color: #2c353e;
+    background-color: #212121;
     /* position sticky may cause some errors, if true, just delete it (Vladik =) ) */
     position: sticky;
     top: 100%;

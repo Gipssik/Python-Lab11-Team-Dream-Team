@@ -4,27 +4,27 @@
 <main class="main">
     <div class="container">
         {% with messages = get_flashed_messages(with_categories=true) %} {% if
-            messages %} {% for category, message in messages %}
+        messages %} {% for category, message in messages %}
             <div class="main__messages__{{ category }}">
                 <a class="error">{{ message }}</a>
             </div>
-            {% endfor %} {% endif %} {% endwith %} {% for field, error in
-                form.errors.items() %}
-                <div class="messages_error">
-                    <a class="error">{{ ', '.join(error) }}</a>
-                </div>
-                {% endfor %}
-                <div class="main__inner">
-                    {{image}}
-            <img class="user__img" src="/static/img/{{current_user.image}}" alt="user image">
-            <div class="user__content">
-                <p class="user__name"> {{form.username.data}}</p>
-                <p class="user__email">Email: {{form.email.data}}</p>
+        {% endfor %} {% endif %} {% endwith %} {% for field, error in
+        form.errors.items() %}
+            <div class="messages_error">
+                <a class="error">{{ ', '.join(error) }}</a>
             </div>
-        </div>
-
-        <hr>
+        {% endfor %}
         <form method="post" enctype="multipart/form-data">
+            <div class="main__inner">
+                {{image}}
+                <img class="user__img" src="/static/img/{{current_user.image}}" alt="user image">
+                <div class="user__content">
+                    <p class="user__name"> {{form.username.data}}</p>
+                    <p class="user__email">Email: {{form.email.data}}</p>
+                </div>
+            </div>
+
+            <hr>
             {{ form.hidden_tag() }}
             <h2 class="change__info">Зміна інформації</h2>
             <div class="form__username">
@@ -46,6 +46,5 @@
             </div>
         </form>
     </div>
-  </div>
 </main>
 {% endblock %}

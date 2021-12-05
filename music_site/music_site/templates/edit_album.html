@@ -22,8 +22,8 @@
             <form method="post" enctype="multipart/form-data">
 	            {{ form.hidden_tag() }}
                 <div>
-                    {{ form.name.label(class="form__label") }}<br>
-                    {{ form.name(class="form__text", placeholder="Введіть ім'я альбому") }}
+                    {{ form.label.label(class="form__label") }}<br>
+                    {{ form.label(class="form__text", placeholder="Введіть ім'я альбому") }}
                 </div>
                 <div>
                     {{ form.image.label(class="form__label") }}<br>

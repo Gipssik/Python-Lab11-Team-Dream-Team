@@ -154,7 +154,7 @@ def create_album(group_id):
         db.session.add(album)
         db.session.commit()
         flash('Альбом успішно створено!', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('group_page', group_id=group_id))
     return render_template('create_album.html', title='Створення Альбому', form=form)
 
 
@@ -168,16 +168,17 @@ def album_page(album_id):
 @app.route('/albums/<int:album_id>/edit', methods=['GET', 'POST'])
 @login_required
 def edit_album(album_id):
-    form = UpdateAlbumInfoForm()
     album = Album.query.get_or_404(album_id)
+    print(album.__dict__)
+    form = UpdateAlbumInfoForm(obj=album)
 
     if current_user not in album.group.users:
         flash('Ви не є учасником групи', 'danger')
         return redirect(url_for('album_page', album_id=album_id))
 
     if form.validate_on_submit():
-        if form.name.data:
-            album.label = form.name.data
+        if form.label.data:
+            album.label = form.label.data
         if form.image.data:
             album.image = save_image(form.image.data)
 
