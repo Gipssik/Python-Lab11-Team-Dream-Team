@@ -1,9 +1,10 @@
 /*____________________ШАПКА_________________________________________________________*/
 .header {
-    background-color: #212121;
+    background-color: #b31717;
     width: 100%;
     left: 0;
     top: 0;
+    margin-bottom: 5px;
 }
 .header__container {
     display: flex;
@@ -17,7 +18,7 @@
     font-size: 45px;
     color: #d9d4d4;
     font-weight: 600;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: "Josefin Sans", sans-serif;
 }
 .header__menu {
     margin: 0 0 0 90px;
@@ -32,16 +33,16 @@
     color: #cacece;
     line-height: 160%;
     padding: 0 0 10px 0;
-    font-family: 'Exo 2', sans-serif;
+    font-family: "Exo 2", sans-serif;
     font-size: 18px;
-    transition: .3s ease;
+    transition: 0.3s ease;
 }
 .menu__item {
 }
 .menu__link:hover {
     color: #35afbf;
     box-shadow: 0px 2px 0px #35afbf;
-    transition: .3s ease;
+    transition: 0.3s ease;
 }
 
 .logo__menu {
@@ -55,14 +56,14 @@
     border-radius: 6px;
     border: 3px solid #35afbf;
     color: #bfc4c4;
-    font-family: 'Exo 2', sans-serif;
-    transition: .3s ease;
+    font-family: "Exo 2", sans-serif;
+    transition: 0.3s ease;
 }
 .button:hover {
     background: #35afbf;
     color: white;
     opacity: 0.7;
-    transition: .3s ease;
+    transition: 0.3s ease;
 }
 .header__buttons {
     display: flex;
@@ -79,6 +80,7 @@
     /* position sticky may cause some errors, if true, just delete it (Vladik =) ) */
     position: sticky;
     top: 100%;
+    margin-top: 5px;
 }
 .footer__container {
     display: flex;
@@ -99,12 +101,12 @@
     color: white;
     font-size: 15px;
     text-align: center;
-    font-family: 'Exo 2', sans-serif;
-    transition: .3s ease;
+    font-family: "Exo 2", sans-serif;
+    transition: 0.3s ease;
 }
-.footer__user:hover{
+.footer__user:hover {
     opacity: 0.7;
-    transition: .3s ease;
+    transition: 0.3s ease;
 }
 
 @media (max-width: 600px) {

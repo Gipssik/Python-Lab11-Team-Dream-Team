@@ -14,12 +14,12 @@ hr {
 
 .main__info__form {
     font-size: 16px;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: "Fira Sans", sans-serif;
     font-weight: 400;
 }
 .form__label {
     margin: 10px 0 10px 0;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: "Fira Sans", sans-serif;
     font-weight: 400;
 }
 .form__text {
@@ -29,7 +29,7 @@ hr {
     width: 50%;
     font-size: 14px;
     border-radius: 6px;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: "Fira Sans", sans-serif;
     font-weight: 400;
 }
 .form__checkbox {
@@ -44,17 +44,17 @@ hr {
     color: #fff;
     font-size: 18px;
     font-weight: 400;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: "Fira Sans", sans-serif;
     margin: 22px 0 22px 0;
     width: 50%;
-    transition: box-shadow .3s ease;
+    transition: box-shadow 0.3s ease;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .form__submit:hover {
     box-shadow: 0px 4px 0px #35afbf;
-    transition: box-shadow .3s ease;
+    transition: box-shadow 0.3s ease;
 }
 .form__submit:active {
     transform: scale(0.97);
@@ -69,14 +69,12 @@ hr {
 }
 .error {
     font-size: 17px;
-    padding: 16px;
-    position: absolute;
 }
 .main__messages__success {
     width: 100%;
     background: rgba(55, 255, 0, 0.48);
     border-radius: 10px;
-    height: 50px;
+    padding: 5px;
     margin: 0 0 20px 0;
 }
 .main__messages__danger {
@@ -95,7 +93,7 @@ hr {
     font-size: 14px;
     border-radius: 6px;
     resize: none;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: "Fira Sans", sans-serif;
     font-weight: 400;
 }
 
