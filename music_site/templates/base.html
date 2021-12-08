@@ -30,7 +30,7 @@
             <a href="{{ url_for('home') }}" class="header__logo">Muzik</a>
             <div class="header__menu menu">
               <ul class="menu__list">
-                {% if current_user.is_authenticated and current_user.role.title == 'Musician' %} 
+                {% if current_user.is_authenticated and current_user.role.title in ['Musician', 'Admin'] %} 
                   {% block button %}{% endblock %} 
                 {% endif %}
               </ul>

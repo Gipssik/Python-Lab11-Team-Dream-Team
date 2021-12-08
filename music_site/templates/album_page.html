@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block button %}
-    {% if current_user in album.group.users %}
+    {% if current_user in album.group.users or current_user.role.title == 'Admin' %}
         <li class="menu__item">
             <a href="{{ url_for('add_song', album_id = album.id) }}" class="menu__link">Додати пісню</a>
         </li>

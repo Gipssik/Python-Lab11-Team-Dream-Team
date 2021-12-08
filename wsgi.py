@@ -10,8 +10,7 @@ if __name__ == "__main__":
         a = User(
             username='admin',
             email='admin@admin.com',
-            password=bcrypt
-                .generate_password_hash('admin'),
+            password=bcrypt.generate_password_hash('admin'),
             role=r_a
         )
         db.session.add_all([r_a, r_m, r_u, a])
