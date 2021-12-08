@@ -37,7 +37,8 @@ class LoginForm(FlaskForm):
 
 
 class GroupForm(FlaskForm):
-    name = StringField("Ім\'я групи: ", validators=[DataRequired(), Length(min=1, max=20)])
+    name = StringField("Ім\'я групи: ", validators=[
+                       DataRequired(), Length(min=1, max=20)])
     users = StringField("Ім\'я співака(ів): ", validators=[DataRequired()])
     img = FileField("Фото групи: ", validators=[FileAllowed(['jpg', 'png'])])
     content = StringField("Опис групи: ", widget=TextArea(),
@@ -63,17 +64,20 @@ class AlbumForm(FlaskForm):
 
 
 class EditAlbumForm(FlaskForm):
-    title = StringField("Назва пісні ", validators=[DataRequired(), Length(min=1, max=30)])
-    media = FileField("Пісня ", validators=[FileAllowed(['mp3']), FileRequired()])
-    submit = SubmitField("Добавити")
+    title = StringField("Назва пісні ", validators=[
+                        DataRequired(), Length(min=1, max=30)])
+    media = FileField("Пісня ", validators=[
+                      FileAllowed(['mp3']), FileRequired()])
+    submit = SubmitField("Змінити")
 
 
 class UpdateGroupInfoForm(FlaskForm):
-    name = StringField("Ім\'я групи: ", validators=[DataRequired(), Length(min=1, max=20)])
+    name = StringField("Ім\'я групи: ", validators=[
+                       DataRequired(), Length(min=1, max=20)])
     users = StringField("Ім\'я співака(ів): ")
     image = FileField("Фото групи: ", validators=[FileAllowed(['jpg', 'png'])])
     content = StringField("Опис групи: ", widget=TextArea())
-    submit = SubmitField("Добавити")
+    submit = SubmitField("Змінити")
 
     def validate_group(self, name):
         name_group = Group.query.filter_by(name=name.data).first()
@@ -83,7 +87,8 @@ class UpdateGroupInfoForm(FlaskForm):
 
 class UpdateAlbumInfoForm(FlaskForm):
     label = StringField("Назва альбому ", validators=[Length(min=1, max=30)])
-    image = FileField("Фото альбому ", validators=[FileAllowed(['jpg', 'png'])])
+    image = FileField("Фото альбому ", validators=[
+                      FileAllowed(['jpg', 'png'])])
     submit = SubmitField("Змінити")
 
 
