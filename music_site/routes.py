@@ -199,7 +199,7 @@ def create_album(group_id):
     if form.validate_on_submit():
         group = Group.query.get_or_404(group_id)
 
-        if current_user not in group.users or not current_user.role.title == 'Admin':
+        if current_user not in group.users and not current_user.role.title == 'Admin':
             flash('Ви не є учасником групи', 'danger')
             return redirect(url_for('group_page', group_id=group_id))
 
@@ -231,7 +231,7 @@ def edit_album(album_id):
     album = Album.query.get_or_404(album_id)
     form = UpdateAlbumInfoForm(obj=album)
 
-    if current_user not in album.group.users or not current_user.role.title == 'Admin':
+    if current_user not in album.group.users and not current_user.role.title == 'Admin':
         flash('Ви не є учасником групи', 'danger')
         return redirect(url_for('album_page', album_id=album_id))
 
