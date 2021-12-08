@@ -103,7 +103,7 @@ def create_group():
                 flash('Користувача не знайдено', 'danger')
                 return redirect(url_for('create_group'))
 
-            if user.role.title == 'User':
+            if user.role.title != 'Musician':
                 flash(f'Користувач {user.username} не музикант', 'danger')
                 return redirect(url_for('create_group'))
 
@@ -127,7 +127,7 @@ def group_page(group_id):
 @login_required
 def group_edit(group_id):
 
-    if(current_user.role.title == 'User'):
+    if current_user.role.title == 'User':
         flash('Ви не є музикантом!', 'danger')
         return redirect(url_for('home'))
 
@@ -135,7 +135,7 @@ def group_edit(group_id):
     users = ', '.join([user.username for user in group.users])
     form = UpdateGroupInfoForm(name=group.name, content=group.content, users=users)
 
-    if current_user not in group.users and not current_user.role.title == 'Admin':
+    if current_user not in group.users and current_user.role.title != 'Admin':
         flash('Ви не є учасником групи', 'danger')
         return redirect(url_for('group_page', group_id=group_id))
 
@@ -151,9 +151,9 @@ def group_edit(group_id):
                 flash('Користувача не знайдено', 'danger')
                 return redirect(url_for('group_page', group_id=group_id))
 
-            if user.role.title == 'User':
+            if user.role.title != 'Musician':
                 flash(f'Користувач {user.username} не музикант', 'danger')
-                return redirect(url_for('create_group'))
+                return redirect(url_for('group_edit', group_id=group_id))
 
             members.append(user)
         group.users = members

@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block style %}
 <link href="/static/style_group_page.css" rel="stylesheet" />
 {% endblock %} {% block button %}
-  {% if current_user in group.users %}
+  {% if current_user in group.users or current_user.role.title == 'Admin' %}
     <li class="menu__item">
       <a
         href="{{ url_for('create_album', group_id = group.id) }}"
