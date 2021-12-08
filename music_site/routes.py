@@ -82,6 +82,10 @@ def account():
 @app.route('/groups/create', methods=['GET', 'POST'])
 @login_required
 def create_group():
+    if current_user.role.title == 'User':
+        flash('Ви не є музикантом!', 'danger')
+        return redirect(url_for('home'))
+
     form = GroupForm()
     if form.validate_on_submit():
 
@@ -98,6 +102,11 @@ def create_group():
             if not user:
                 flash('Користувача не знайдено', 'danger')
                 return redirect(url_for('create_group'))
+
+            if user.role.title == 'User':
+                flash(f'Користувач {user.username} не музикант', 'danger')
+                return redirect(url_for('create_group'))
+
             group.users.append(user)
 
         db.session.add(group)
@@ -117,11 +126,16 @@ def group_page(group_id):
 @app.route('/groups/<int:group_id>/edit', methods=['GET', 'POST'])
 @login_required
 def group_edit(group_id):
+
+    if(current_user.role.title == 'User'):
+        flash('Ви не є музикантом!', 'danger')
+        return redirect(url_for('home'))
+
     group = Group.query.get_or_404(group_id)
     users = ', '.join([user.username for user in group.users])
     form = UpdateGroupInfoForm(name=group.name, content=group.content, users=users)
 
-    if current_user not in group.users:
+    if current_user not in group.users and not current_user.role.title == 'Admin':
         flash('Ви не є учасником групи', 'danger')
         return redirect(url_for('group_page', group_id=group_id))
 
@@ -132,9 +146,14 @@ def group_edit(group_id):
         members = []
         for username in form.users.data.split(", "):
             user = User.query.filter_by(username=username).first()
+
             if not user:
                 flash('Користувача не знайдено', 'danger')
                 return redirect(url_for('group_page', group_id=group_id))
+
+            if user.role.title == 'User':
+                flash(f'Користувач {user.username} не музикант', 'danger')
+                return redirect(url_for('create_group'))
 
             members.append(user)
         group.users = members
@@ -157,7 +176,7 @@ def group_edit(group_id):
 @login_required
 def group_delete(group_id):
     group = Group.query.get_or_404(group_id)
-    if current_user in group.users:
+    if current_user in group.users or current_user.role.title == 'Admin':
         albums = db.session.query(Album).filter(Album.group_id == group.id).all()
         for album in albums:
             db.session.query(Song).filter_by(album_id=album.id).delete()
@@ -175,11 +194,12 @@ def group_delete(group_id):
 @app.route('/groups/<int:group_id>/albums/create', methods=['GET', 'POST'])
 @login_required
 def create_album(group_id):
+
     form = AlbumForm()
     if form.validate_on_submit():
         group = Group.query.get_or_404(group_id)
 
-        if current_user not in group.users:
+        if current_user not in group.users and not current_user.role.title == 'Admin':
             flash('Ви не є учасником групи', 'danger')
             return redirect(url_for('group_page', group_id=group_id))
 
@@ -207,10 +227,11 @@ def album_page(album_id):
 @app.route('/albums/<int:album_id>/edit', methods=['GET', 'POST'])
 @login_required
 def edit_album(album_id):
+
     album = Album.query.get_or_404(album_id)
     form = UpdateAlbumInfoForm(obj=album)
 
-    if current_user not in album.group.users:
+    if current_user not in album.group.users and not current_user.role.title == 'Admin':
         flash('Ви не є учасником групи', 'danger')
         return redirect(url_for('album_page', album_id=album_id))
 
@@ -230,10 +251,11 @@ def edit_album(album_id):
 @app.route('/albums/<int:album_id>/add-song', methods=['GET', 'POST'])
 @login_required
 def add_song(album_id):
+
     form = EditAlbumForm()
     album = Album.query.get_or_404(album_id)
 
-    if current_user not in album.group.users:
+    if current_user not in album.group.users and not current_user.role.title == 'Admin':
         flash('Ви не є учасником групи', 'danger')
         return redirect(url_for('album_page', album_id=album_id))
 
@@ -255,8 +277,9 @@ def add_song(album_id):
 @app.route('/albums/<int:album_id>/delete', methods=['GET'])
 @login_required
 def album_delete(album_id):
+
     album = Album.query.get_or_404(album_id)
-    if current_user in album.group.users:
+    if current_user in album.group.users or current_user.role.title == 'Admin':
         db.session.query(Song).filter_by(album_id=album.id).delete()
         db.session.delete(album)
         db.session.flush()
@@ -270,8 +293,9 @@ def album_delete(album_id):
 @app.route('/songs/<int:song_id>/delete', methods=['GET'])
 @login_required
 def song_delete(song_id):
+
     song = Song.query.get_or_404(song_id)
-    if current_user in song.album.group.users:
+    if current_user in song.album.group.users or current_user.role.title == 'Admin':
         db.session.delete(song)
         db.session.commit()
         flash('Альбому успішно видалено', 'success')
