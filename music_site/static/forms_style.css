@@ -93,6 +93,13 @@ hr {
     font-weight: 400;
 }
 
+@media (max-width: 661px) {
+    .form__text,
+    .form__textarea,
+    .form__submit {
+        width: 100%;
+    }
+}
 @media (max-width: 300px) {
     .form__submit,
     .form__text {

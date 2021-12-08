@@ -1,48 +1,43 @@
-{% extends 'base.html' %}
-
-{% block style %}
-<link href="/static/style_create_album.css" rel="stylesheet">
-{% endblock %}
-
-{% block main %}
+{% extends 'base.html' %} {% block style %}
+<link href="/static/style_create_album.css" rel="stylesheet" />
+{% endblock %} {% block main %}
 <main class="main">
-    <div class="main__container _container">
-        <div class="main__create__album">
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="main__messages__{{ category }}">
-                            <a class="error">{{ message }}</a>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-            <h1 class="main__name__form">Редагування групи</h1>
-            <hr>
-            <form method="post" enctype="multipart/form-data">
-	            {{ form.hidden_tag() }}
-                <div>
-                    {{ form.name.label(class="form__label") }}<br>
-                    {{ form.name(class="form__text", placeholder="Введіть ім'я альбому") }}
-                </div>
-                <div>
-                    {{ form.users.label(class="form__label") }}<br>
-                    {{ form.users(class="form__text", placeholder="Введіть ім'я альбому") }}
-                </div>
-                <div>
-                    {{ form.content.label(class="form__label") }}<br>
-                    {{ form.content(class="form__text", placeholder="Введіть ім'я альбому") }}
-                </div>
-                <div>
-                    {{ form.image.label(class="form__label") }}<br>
-                    {{ form.image(class="form__image", id="form__file") }}
-                </div>
-                <div>
-                    {{ form.submit(class="form__submit") }}
-                </div>
-            </form>
-            <hr>
+  <div class="main__container _container">
+    <div class="main__create__album">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div class="main__messages__{{ category }}">
+        <a class="error">{{ message }}</a>
+      </div>
+      {% endfor %} {% endif %} {% endwith %}
+      <h1 class="main__name__form">Редагування групи</h1>
+      <hr />
+      <form method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div>
+          {{ form.name.label(class="form__label") }}<br />
+          {{ form.name(class="form__text", placeholder="Введіть ім'я групи") }}
         </div>
+        <div>
+          {{ form.users.label(class="form__label") }}<br />
+          {{ form.users(class="form__text", placeholder="Введіть ім'я співаків
+          через ','") }}
+        </div>
+        <div>
+          {{ form.content.label(class="form__label") }}<br />
+          {{ form.content(class="form__textarea",maxlength="400",
+          placeholder="Введіть опис групи") }}
+        </div>
+        <div class="group__img">
+          {{ form.image.label(class="form__label") }}<br />
+          <label class="file__upload">
+            {{form.image(class="form__img__btn",id="form__file")}}
+          </label>
+        </div>
+        <div>{{ form.submit(class="form__submit") }}</div>
+      </form>
+      <hr />
     </div>
+  </div>
 </main>
 {% endblock %}
