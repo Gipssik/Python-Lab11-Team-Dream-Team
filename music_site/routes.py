@@ -135,7 +135,7 @@ def group_edit(group_id):
     users = ', '.join([user.username for user in group.users])
     form = UpdateGroupInfoForm(name=group.name, content=group.content, users=users)
 
-    if current_user not in group.users or not current_user.role.title == 'Admin':
+    if current_user not in group.users and not current_user.role.title == 'Admin':
         flash('Ви не є учасником групи', 'danger')
         return redirect(url_for('group_page', group_id=group_id))
 
@@ -255,7 +255,7 @@ def add_song(album_id):
     form = EditAlbumForm()
     album = Album.query.get_or_404(album_id)
 
-    if current_user not in album.group.users or not current_user.role.title == 'Admin':
+    if current_user not in album.group.users and not current_user.role.title == 'Admin':
         flash('Ви не є учасником групи', 'danger')
         return redirect(url_for('album_page', album_id=album_id))
 
