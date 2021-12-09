@@ -1,51 +1,59 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block style %}
+<link href="/static/style_create_album.css" rel="stylesheet" />
+<script src="../static/script_album.js"></script>
 
-{% block style %}
-<link href="/static/style_create_album.css" rel="stylesheet">
-{% endblock %}
+{% endblock %} {% block button %} {% if current_user in album.group.users or
+current_user.role.title == 'Admin' %}
+<li class="menu__item">
+  <a href="{{ url_for('add_song', album_id = album.id) }}" class="menu__link"
+    >Додати пісню</a
+  >
+</li>
+<li class="menu__item">
+  <a
+    href="{{ url_for('album_delete', album_id = album.id) }}"
+    class="menu__link"
+    >Видалення альбому</a
+  >
+</li>
+<li class="menu__item">
+  <a href="{{ url_for('edit_album', album_id = album.id) }}" class="menu__link"
+    >Редагування альбому</a
+  >
+</li>
 
-{% block button %}
-    {% if current_user in album.group.users or current_user.role.title == 'Admin' %}
-        <li class="menu__item">
-            <a href="{{ url_for('add_song', album_id = album.id) }}" class="menu__link">Додати пісню</a>
-        </li>
-        <li class="menu__item">
-            <a href="{{ url_for('album_delete', album_id = album.id) }}" class="menu__link">Видалення альбому</a>
-        </li>
-        <li class="menu__item">
-        <a href="{{ url_for('edit_album', album_id = album.id) }}" class="menu__link">Редагування альбому</a>
-        </li>
-
-    {% endif %}
-{% endblock %}
-
-{% block main %}
+{% endif %} {% endblock %} {% block main %}
 <main class="main">
-    <div class="main__container _container">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="main__messages__{{ category }}">
-                        <a class="error">{{ message }}</a>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-        {% for song in album.songs %}
-            <div class="main__song song">
-                <div class="song__title">
-                    <p class="info__title">{{ song.title }}</p>
-                </div>
-                <div class="song__and__delete">
-                    <div class="song__media">
-                        <audio src="/static/songs/{{ song.media }}" type="audio/mpeg" controls></audio><br>
-                    </div>
-                    <div class="song__delete">
-                        <a href="{{ url_for('song_delete', song_id = song.id) }}"><img src="/static/img/ico_delete.png" class="ico_delete"></a>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %} {% for category, message in messages %}
+  <div class="main__messages__{{ category }}">
+    <a class="error">{{ message }}</a>
+  </div>
+  {% endfor %} {% endif %} {% endwith %}
+  <div class="main__container _container">
+    <h1 class="title album__title">Пісні</h1>
+    <hr />
+    <ul class="songs__list">
+      {% for song in album.songs %}
+      <li class="songs__item">
+        <h3 class="info__title">{{ song.title }}</h3>
+        <audio
+          class="song"
+          id="song{{song.id}}"
+          src="/static/songs/{{ song.media }}"
+          type="audio/mpeg"
+          preload="none"
+          controls
+        ></audio>
+        <a
+          class="ico_delete"
+          href="{{ url_for('song_delete', song_id = song.id) }}"
+        >
+          <img class="ico" src="/static/img/ico_delete.png" />
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
 </main>
 {% endblock %}

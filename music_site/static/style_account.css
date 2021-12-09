@@ -31,11 +31,11 @@
 }
 .user__name {
     font-size: 50px;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: "Josefin Sans", sans-serif;
 }
 .user__email {
     font-size: 23px;
-    font-family: 'Exo 2', sans-serif;
+    font-family: "Exo 2", sans-serif;
     font-weight: 600;
 }
 form {
@@ -74,5 +74,8 @@ form {
     }
     .change__info {
         text-align: left;
+    }
+    form {
+        width: auto;
     }
 }

@@ -9,7 +9,12 @@
       <div class="main__messages__{{ category }}">
         <a class="error">{{ message }}</a>
       </div>
-      {% endfor %} {% endif %} {% endwith %}
+      {% endfor %} {% endif %} {% endwith %}{% for field, error in
+      form.errors.items() %}
+      <div class="messages_error">
+        <a class="error">{{ ', '.join(error) }}</a>
+      </div>
+      {% endfor %}
       <h1 class="main__name__form">Редагування групи</h1>
       <hr />
       <form method="post" enctype="multipart/form-data">

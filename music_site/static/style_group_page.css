@@ -99,7 +99,7 @@
     padding: 13px;
     border-radius: 3px;
     transform: translateY(20px);
-    background-color: #141414;
+    /* background-color: #141414; */
 }
 .band__list::after {
     content: "Учасники";
@@ -108,9 +108,9 @@
     position: absolute;
     top: 0;
     left: 50%;
-    border: 2px solid #141414;
+    border-bottom: 2px solid #141414;
     border-radius: 3px;
-    transform: translate(-50%, -90%);
+    transform: translate(-50%, -100%);
 }
 .band__member {
     margin-bottom: 10px;
@@ -124,11 +124,11 @@
     font-weight: 800;
     text-align: center;
     overflow-wrap: anywhere;
-    color: #fff;
 }
 .band__member__img {
     display: block;
     margin: 0 auto;
+    border: 1px solid black;
 }
 @media (max-width: 600px) {
     .group__info {

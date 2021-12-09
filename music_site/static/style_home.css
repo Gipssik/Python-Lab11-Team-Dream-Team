@@ -50,11 +50,9 @@
     border-radius: 3px;
     margin: 0 0 0 5px;
     padding: 7px 7px 7px 15px;
+    overflow-wrap: anywhere;
 }
-/*.group__info > a{*/
-/*    line-height: 20px;*/
-/*    font-size: 15px;*/
-/*}*/
+
 .info__name {
     font-weight: 600;
     font-family: "Josefin Sans", sans-serif;
