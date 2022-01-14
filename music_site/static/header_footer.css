@@ -1,0 +1,164 @@
+/*____________________ШАПКА_________________________________________________________*/
+.header {
+    background-color: #212121;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    min-height: 100px;
+    align-items: center;
+    padding: 0 15px;
+    box-sizing: content-box;
+}
+.header__logo {
+    font-size: 45px;
+    color: #d9d4d4;
+    font-weight: 600;
+    font-family: "Josefin Sans", sans-serif;
+}
+.header__menu {
+    margin: 0 0 0 90px;
+}
+.menu {
+}
+.menu__list {
+    display: flex;
+    gap: 25px;
+}
+.menu__link {
+    color: #cacece;
+    line-height: 160%;
+    padding: 0 0 10px 0;
+    font-family: "Exo 2", sans-serif;
+    font-size: 18px;
+    transition: 0.3s ease;
+}
+.menu__item {
+}
+.menu__link:hover {
+    color: #35afbf;
+    box-shadow: 0px 2px 0px #35afbf;
+    transition: 0.3s ease;
+}
+
+.logo__menu {
+    display: flex;
+    align-items: center;
+}
+
+.button {
+    background: transparent;
+    padding: 11px 15px;
+    border-radius: 6px;
+    border: 3px solid #35afbf;
+    color: #bfc4c4;
+    font-family: "Exo 2", sans-serif;
+    transition: 0.3s ease;
+}
+.button:hover {
+    background: #35afbf;
+    color: white;
+    opacity: 0.7;
+    transition: 0.3s ease;
+}
+.header__buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+/*____________________FOOTER_________________________________________________________*/
+.footer {
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: #212121;
+    /* position sticky may cause some errors, if true, just delete it (Vladik =) ) */
+    position: sticky;
+    top: 100%;
+}
+.footer__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 15px;
+}
+.footer__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+}
+.footer__img img {
+    width: 20px;
+}
+.footer__user {
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    font-family: "Exo 2", sans-serif;
+    transition: 0.3s ease;
+}
+.footer__user:hover {
+    opacity: 0.7;
+    transition: 0.3s ease;
+}
+
+@media (max-width: 699px) {
+    .logo__menu {
+        align-items: center;
+        gap: 10px;
+    }
+    .header__menu {
+        margin: 0;
+    }
+    .header__container {
+        min-height: 60px;
+    }
+    .button {
+        padding: 6px 5px;
+        font-size: 11px;
+    }
+    .header__buttons {
+        display: flex;
+        gap: 5px;
+    }
+    .menu__link {
+        line-height: 100%;
+    }
+    .menu__list {
+        gap: 15px;
+    }
+    .header__logo {
+        font-size: 20px;
+    }
+    .menu__link {
+        font-size: 10px;
+    }
+    .header__buttons {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 329px) {
+    .menu__list {
+        gap: 7px;
+    }
+}
+@media (max-width: 300px) {
+    .menu__list {
+        gap: 3px;
+    }
+    .menu__link {
+        font-size: 8px;
+    }
+    .footer__user {
+        font-size: 10px;
+    }
+    .footer__container {
+        padding: 10px;
+    }
+}

@@ -1,0 +1,147 @@
+.main__name__form {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2c353e;
+    margin-bottom: 20px;
+}
+.main__create__album {
+    padding: 20px 0 0 0;
+    width: 100%;
+}
+.main {
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: white;
+    flex: 1 1 auto;
+}
+
+.main__container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.form__image {
+    padding: 11px 0 0 0;
+}
+
+.info__title {
+    width: 100px;
+    font-size: 19px;
+    font-weight: 600;
+    font-family: "Exo 2", sans-serif;
+    color: #2c353e;
+}
+
+/* .main__song {
+    background-color: lightblue;
+    width: 100%;
+    display: flex;
+    border-radius: 3px 27px 27px 3px;
+    margin: 20px 0 0 0;
+    height: 52px;
+    justify-content: space-between;
+    align-items: center;
+} */
+
+/* audio {
+    padding: 0;
+    width: 700px;
+}
+
+.ico_delete {
+    width: 30px;
+    height: 30px;
+    margin: 0 15px 0 15px;
+}
+
+.song__and__delete {
+    display: flex;
+    align-items: center;
+} */
+
+.songs__list {
+    width: 100%;
+}
+.songs__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    border-radius: 3px 27px 27px 3px;
+    margin-top: 20px;
+    padding: 4px;
+    background-color: lightblue;
+}
+.info__title {
+    overflow-wrap: anywhere;
+    width: 300px;
+    padding: 0 15px;
+}
+.song {
+    height: 22px;
+    width: 100%;
+    border-radius: 0;
+    border-radius: 3px 27px 27px 3px;
+}
+.ico_delete {
+}
+.ico {
+    width: 25px;
+}
+.form__img__btn {
+    display: none;
+}
+
+.file__upload {
+    cursor: pointer;
+    width: 140px;
+    height: 50px;
+    background: url(../static/img/1297064598_1296921710_001.gif);
+    background-size: cover;
+    border: 1px solid #2c353e;
+    position: relative;
+    transform: translateX(100%);
+}
+.file__upload::before {
+    content: "Тицніть на кота щоб завантажити фото =)";
+    font-size: 14px;
+    position: absolute;
+    transform: translateX(-100%);
+}
+
+.group__img {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.album__title {
+    font-size: 30px !important;
+    margin: 0 auto !important;
+}
+
+audio::-webkit-media-controls-panel {
+    background-color: lightblue;
+}
+
+@media screen and (max-width: 699px) {
+    audio::-webkit-media-controls-current-time-display,
+    audio::-webkit-media-controls-time-remaining-display {
+        display: none;
+    }
+}
+@media screen and (max-width: 460px) {
+    .ico {
+        width: 19px;
+    }
+    .info__title {
+        width: 110px;
+        font-size: 14px;
+        padding: 0;
+    }
+    .songs__item {
+        gap: 0;
+    }
+}

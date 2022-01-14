@@ -1,0 +1,79 @@
+{% extends 'base.html' %} {% block style %}
+<link href="/static/style_group_page.css" rel="stylesheet" />
+{% endblock %} {% block button %} {% if current_user in group.users or
+current_user.role.title == 'Admin' %}
+<li class="menu__item">
+  <a
+    href="{{ url_for('create_album', group_id = group.id) }}"
+    class="menu__link"
+    >Створення альбому</a
+  >
+</li>
+<li class="menu__item">
+  <a
+    href="{{ url_for('group_delete', group_id = group.id) }}"
+    class="menu__link"
+    >Видалення групи</a
+  >
+</li>
+<li class="menu__item">
+  <a href="{{ url_for('group_edit',  group_id = group.id) }}" class="menu__link"
+    >Редагування групи</a
+  >
+</li>
+{% endif %} {% endblock %} {% block main %}
+<main class="main">
+  <div class="main__container _container">
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div class="main__messages__{{ category }}">
+      <a class="error">{{ message }}</a>
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+
+    <div class="group__info">
+      <div class="group__content">
+        <img
+          class="group__img"
+          src="/static/img/{{group.image}}"
+          alt="group image"
+        />
+        <h2 class="group__name">{{group.name}}</h2>
+        <p class="group__text">{{group.content}}</p>
+      </div>
+      <ul class="band__list">
+        {% for user in group.users %}
+        <li class="band__member">
+          <h3 class="band__member__title">{{user.username}}</h3>
+          <img
+            class="band__member__img"
+            src="../static/img/{{user.image}}"
+            alt="band__member"
+            width="60"
+          />
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% if group.albums %}
+    <hr />
+    <h1 class="albums__title">Альбоми</h1>
+    <ul class="albums__list">
+      {% for album in group.albums %}
+      <li class="albums__item">
+        <a class="album__link" href="../albums/{{ album.id }}">
+          <div class="main__albums album">
+            <div
+              class="album__img"
+              style="background-image:url(/static/img/{{album.image}})"
+            ></div>
+
+            <p class="info__name">{{ album.label }}</p>
+          </div>
+        </a>
+      </li>
+      {% endfor %} {% endif %}
+    </ul>
+  </div>
+</main>
+{% endblock %}}

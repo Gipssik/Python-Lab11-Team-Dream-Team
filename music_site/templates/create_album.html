@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block style %}
+<link href="/static/style_create_album.css" rel="stylesheet" />
+{% endblock %} {% block main %}
+<main class="main">
+  <div class="main__container _container">
+    <div class="main__create__album">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div class="main__messages__{{ category }}">
+        <a class="error">{{ message }}</a>
+      </div>
+      {% endfor %} {% endif %} {% endwith %}
+      <h1 class="main__name__form">Створення альбому</h1>
+      <hr />
+      <form method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div>
+          {{ form.label.label(class="form__label") }}<br />
+          {{ form.label(class="form__text", placeholder="Введіть ім'я альбому",
+          maxlength="30") }}
+        </div>
+        <div>
+          {{ form.img.label(class="form__label") }}<br />
+          {{ form.img(class="form__image", id="form__file") }}
+        </div>
+        <div>{{ form.submit(class="form__submit") }}</div>
+      </form>
+      <hr />
+    </div>
+  </div>
+</main>
+{% endblock %}

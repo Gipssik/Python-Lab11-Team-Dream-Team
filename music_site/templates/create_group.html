@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% block style %}
+<link href="../static/style_create_group.css" rel="stylesheet" />
+{% endblock %} {% block main %}
+<main class="main">
+  <div class="main__inner">
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div class="main__messages__{{ category }}">
+      <a class="error">{{ message }}</a>
+    </div>
+    {% endfor %} {% endif %} {% endwith %} {% for field, error in
+    form.errors.items() %}
+    <div class="messages_error">
+      <a class="error">{{ ', '.join(error) }}</a>
+    </div>
+    {% endfor %}
+    <h1 class="title">Створення групи</h1>
+    <p class="info">
+      Будь ласка заповніть дану форму для створення музичного гурту
+    </p>
+    <hr />
+    <form method="post" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <div class="group__name">
+        {{form.name.label(class="form__label")}}
+        {{form.name(class="form__text",placeholder="Введіть ім'я групи")}}
+      </div>
+      <div class="members">
+        {{form.users.label(class="form__label")}}
+        {{form.users(class="form__text",placeholder="Введіть членів гурту через \", \"")}}
+      </div>
+      <div class="group__img">
+        {{form.img.label(class="form__label")}}
+        <label class="file__upload">
+          {{form.img(class="form__img__btn",src="/static/img/1297064598_1296921710_001.gif")}}
+        </label>
+      </div>
+      <div class="description">
+        {{form.content.label(class="form")}}
+        {{form.content(class="form__textarea", maxlength="400")}}
+      </div>
+      <div class="submit">{{form.submit(class="form__submit")}}</div>
+    </form>
+  </div>
+</main>
+{% endblock %}
